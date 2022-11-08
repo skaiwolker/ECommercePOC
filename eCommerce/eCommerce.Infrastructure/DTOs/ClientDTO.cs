@@ -17,10 +17,10 @@ namespace eCommerce.Infrastructure.DTOs
 
         public DateTime DateOfBirth { get; set; }
 
-        public virtual List<Address> Addresses { get; set; }
+        public List<Address> Addresses { get; set; }
 
-        public virtual List<CreditCard> CreditCards { get; set; }
+        public List<CreditCard> CreditCards { get; set; }
 
-        public virtual List<Order> Orders { get; set; }
+        public List<Order> Orders { get; set; }
     }
 }

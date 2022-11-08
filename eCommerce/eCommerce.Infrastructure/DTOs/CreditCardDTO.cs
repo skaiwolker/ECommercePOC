@@ -19,7 +19,7 @@ namespace eCommerce.Infrastructure.DTOs
 
         public string SecurityCode { get; set; }
 
-        public virtual Client Client { get; set; }
+        public Client Client { get; set; }
 
         public int ClientId { get; set; }
     }

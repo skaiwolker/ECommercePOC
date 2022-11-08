@@ -14,6 +14,18 @@ namespace eCommerce.Infrastructure.Context
         {
         }
 
+        public DbSet<Address> Addresses { get; set; }
+
+        public DbSet<Client> Clients { get; set; }
+
+        public DbSet<CreditCard> CreditCards { get; set; }
+
+        public DbSet<Order> Orders { get; set; }
+
+        public DbSet<Product> Products { get; set; }
+
+        public DbSet<OrderProduct> OrderProducts { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Address>().HasOne(address => address.Client)
@@ -28,26 +40,13 @@ namespace eCommerce.Infrastructure.Context
                 .WithMany(client => client.Orders)
                 .HasForeignKey(order => order.ClientId);
 
-            builder.Entity<Stock>().HasOne(stock => stock.Order)
-                .WithMany(order => order.Stocks)
-                .HasForeignKey(stock => stock.OrderId);
+            builder.Entity<OrderProduct>().HasOne(cart => cart.Order)
+                .WithMany(order => order.OrderProducts)
+                .HasForeignKey(cart => cart.OrderId);
 
-            builder.Entity<Stock>().HasOne(stock => stock.Product)
-                .WithMany(product => product.Stocks)
-                .HasForeignKey(stock => stock.ProductId);
+            builder.Entity<OrderProduct>().HasOne(cart => cart.Product)
+                .WithMany(product => product.OrderProducts)
+                .HasForeignKey(cart => cart.ProductId);
         }
-
-        public DbSet<Address> Addresses { get; set; }
-
-        public DbSet<Client> Clients { get; set; }
-
-        public DbSet<CreditCard> CreditCards { get; set; }
-
-        public DbSet<Order> Orders { get; set; }
-
-        public DbSet<Product> Products { get; set; }
-
-        public DbSet<Stock> Stocks { get; set; }
-
     }
 }

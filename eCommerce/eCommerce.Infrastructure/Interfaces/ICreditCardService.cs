@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eCommerce.Domain.Interfaces
+namespace eCommerce.Infrastructure.Interfaces
 {
     public interface ICreditCardService
     {

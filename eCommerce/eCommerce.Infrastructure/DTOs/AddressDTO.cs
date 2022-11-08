@@ -21,7 +21,7 @@ namespace eCommerce.Infrastructure.DTOs
 
         public string City { get; set; }
 
-        public virtual Client Client { get; set; }
+        public Client Client { get; set; }
 
         public int ClientId { get; set; }
     }

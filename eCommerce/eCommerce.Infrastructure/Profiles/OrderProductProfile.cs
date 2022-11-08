@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace eCommerce.Domain.Profiles
 {
-    public class StockProfile: Profile
+    public class OrderProductProfile: Profile
     {
-        public StockProfile()
+        public OrderProductProfile()
         {
-            CreateMap<StockDTO, Stock>();
-            CreateMap<Stock, StockDTO>();
+            CreateMap<OrderProductDTO, OrderProduct>();
+            CreateMap<OrderProduct, OrderProductDTO>();
         }
     }
 }

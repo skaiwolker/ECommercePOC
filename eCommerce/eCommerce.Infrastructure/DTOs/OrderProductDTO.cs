@@ -1,16 +1,14 @@
-﻿using System;
+﻿using eCommerce.Domain.Models;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace eCommerce.Domain.Models
+namespace eCommerce.Infrastructure.DTOs
 {
-    public class Stock
+    public class OrderProductDTO
     {
-        [Key]
-        [Required]
         public int Id { get; set; }
 
         //public Seller Seller { get; set; }
@@ -23,6 +21,5 @@ namespace eCommerce.Domain.Models
         public Product Product { get; set; }
 
         public int ProductId { get; set; }
-
     }
 }

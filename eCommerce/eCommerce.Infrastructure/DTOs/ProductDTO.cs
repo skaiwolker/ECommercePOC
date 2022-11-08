@@ -21,8 +21,10 @@ namespace eCommerce.Infrastructure.DTOs
         //public virtual Supplier Supplier { get; set; }
         //public int SupplierId { get; set; }
 
+        public int Amount { get; set; }
+
         public double Price { get; set; }
 
-        public virtual List<Stock> Stocks { get; set; }
+        public List<OrderProduct> OrderProducts { get; set; }
     }
 }

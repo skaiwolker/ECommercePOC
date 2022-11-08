@@ -13,8 +13,8 @@ namespace eCommerce.Domain.Profiles
     {
         public OrderProfile()
         {
-            CreateMap<OrderDTO, Order>();
-            CreateMap<Order, OrderDTO>();
+            CreateMap<OrderDTO, ProdutoOrder>();
+            CreateMap<ProdutoOrder, OrderDTO>();
         }
     }
 }

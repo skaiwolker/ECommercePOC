@@ -21,7 +21,7 @@ namespace eCommerce.Domain.Models
 
         public string SecurityCode { get; set; }
 
-        public Client Client { get; set; }
+        public virtual Client Client { get; set; }
 
         public int ClientId { get; set; }
     }

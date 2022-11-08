@@ -2,10 +2,8 @@
 using eCommerce.Domain.Interfaces;
 using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.DTOs;
-using System;
+using eCommerce.Infrastructure.Interfaces;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace eCommerce.Infrastructure.Services

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj": {}
+    "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj": {
+    "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj",
         "projectName": "eCommerce.Domain",
-        "projectPath": "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj",
-        "packagesPath": "C:\\Users\\darta\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Domain\\obj\\",
+        "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj",
+        "packagesPath": "C:\\Users\\dartagnanl\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\darta\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\dartagnanl\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,6 +41,10 @@
           "targetAlias": "net5.0",
           "dependencies": {
             "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
               "target": "Package",
               "version": "[12.0.0, )"
             },
@@ -78,7 +82,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.412\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
         }
       }
     }
