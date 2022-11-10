@@ -3,6 +3,7 @@ using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Interfaces;
 using eCommerce.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,10 +20,10 @@ namespace eCommerce.Services.Services
             _mapper = mapper;
         }
 
-        public void AddProduct(ProductDTO productDTO)
+        public async Task AddProduct(ProductDTO productDTO)
         {
             var product = _mapper.Map<Product>(productDTO);
-            _productRepository.AddProduct(product);
+            await _productRepository.AddProduct(product);
         }
 
         public async Task<IEnumerable<ProductDTO>> GetProducts()
@@ -37,16 +38,21 @@ namespace eCommerce.Services.Services
             return _mapper.Map<ProductDTO>(result);
         }
 
-        public void UpdateProduct(ProductDTO productDTO)
+        public async Task UpdateProduct(ProductDTO productDTO)
         {
             var product = _mapper.Map<Product>(productDTO);
-            _productRepository.UpdateProduct(product);
+            await _productRepository.UpdateProduct(product);
         }
 
-        public void RemoveProduct(int id)
+        public async Task<bool> RemoveProduct(int id)
         {
             var product = _productRepository.GetProductById(id).Result;
-            _productRepository.RemoveProduct(product);
+
+            if (product != null) {
+                await _productRepository.RemoveProduct(product);
+                return true;
+            }
+            throw new Exception("Invalid Product Id");
         }
     }
 }

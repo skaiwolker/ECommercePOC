@@ -26,22 +26,22 @@ namespace eCommerce.Infrastructure.Repository
             return await _context.Products.FirstOrDefaultAsync(product => product.Id == id);
         }
 
-        public void AddProduct(Product product)
+        public async Task AddProduct(Product product)
         {
-            _context.Add(product);
-            _context.SaveChanges();
+            await _context.AddAsync(product);
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateProduct(Product product)
+        public async Task UpdateProduct(Product product)
         {
             _context.Products.Update(product);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void RemoveProduct(Product product)
+        public async Task RemoveProduct(Product product)
         {
             _context.Remove(product);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

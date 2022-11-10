@@ -3,6 +3,7 @@ using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Interfaces;
 using eCommerce.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,10 +20,10 @@ namespace eCommerce.Services.Services
             _mapper = mapper;
         }
 
-        public void AddCreditCard(CreditCardDTO creditCardDTO)
+        public async Task AddCreditCard(CreditCardDTO creditCardDTO)
         {
             var creditCard = _mapper.Map<CreditCard>(creditCardDTO);
-            _creditCardRepository.AddCreditCard(creditCard);
+            await _creditCardRepository.AddCreditCard(creditCard);
         }
 
         public async Task<IEnumerable<CreditCardDTO>> GetCreditCards()
@@ -31,22 +32,28 @@ namespace eCommerce.Services.Services
             return _mapper.Map<IEnumerable<CreditCardDTO>>(result);
         }
 
-        public async Task<CreditCardDTO> GetCreditCardById(int? id)
+        public async Task<CreditCardDTO> GetCreditCardById(int id)
         {
             var result = await _creditCardRepository.GetCreditCardById(id);
             return _mapper.Map<CreditCardDTO>(result);
         }
 
-        public void UpdateCreditCard(CreditCardDTO creditCardDTO)
+        public async Task UpdateCreditCard(CreditCardDTO creditCardDTO)
         {
             var creditCard = _mapper.Map<CreditCard>(creditCardDTO);
-            _creditCardRepository.UpdateCreditCard(creditCard);
+            await _creditCardRepository.UpdateCreditCard(creditCard);
         }
 
-        public void RemoveCreditCard(int? id)
+        public async Task<bool> RemoveCreditCard(int id)
         {
             var creditCard = _creditCardRepository.GetCreditCardById(id).Result;
-            _creditCardRepository.RemoveCreditCard(creditCard);
+
+            if (creditCard != null)
+            {
+                await _creditCardRepository.RemoveCreditCard(creditCard);
+                return true;
+            }
+            throw new Exception("Invalid Credit Card Id");
         }
     }
 }

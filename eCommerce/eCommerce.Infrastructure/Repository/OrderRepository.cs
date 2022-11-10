@@ -21,27 +21,27 @@ namespace eCommerce.Infrastructure.Repository
             return await _context.Orders.ToListAsync();
         }
 
-        public async Task<Order> GetOrderById(int? id)
+        public async Task<Order> GetOrderById(int id)
         {
-            return await _context.Orders.FindAsync(id);
+            return await _context.Orders.Include(order => order.OrderProducts).FirstOrDefaultAsync(order => order.Id == id);
         }
 
-        public void AddOrder(Order order)
+        public async Task AddOrder(Order order)
         {
-            _context.Add(order);
-            _context.SaveChanges();
+            await _context.AddAsync(order);
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateOrder(Order order)
+        public async Task UpdateOrder(Order order)
         {
             _context.Update(order);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void RemoveOrder(Order order)
+        public async Task RemoveOrder(Order order)
         {
             _context.Remove(order);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

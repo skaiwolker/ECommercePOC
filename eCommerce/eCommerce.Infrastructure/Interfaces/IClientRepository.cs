@@ -8,12 +8,12 @@ namespace eCommerce.Infrastructure.Interfaces
     {
         Task<IEnumerable<Client>> GetClients();
 
-        Task<Client> GetClientById(int? id);
+        Task<Client> GetClientById(int id);
 
-        void AddClient(Client client);
+        Task AddClient(Client client);
 
-        void UpdateClient(Client client);
+        Task UpdateClient(Client client);
 
-        void RemoveClient(Client client);
+        Task RemoveClient(Client client);
     }
 }

@@ -21,27 +21,27 @@ namespace eCommerce.Infrastructure.Repository
             return await _context.CreditCards.ToListAsync();
         }
 
-        public async Task<CreditCard> GetCreditCardById(int? id)
+        public async Task<CreditCard> GetCreditCardById(int id)
         {
-            return await _context.CreditCards.FindAsync(id);
+            return await _context.CreditCards.FirstOrDefaultAsync(creditCard => creditCard.Id == id);
         }
 
-        public void AddCreditCard(CreditCard creditCard)
+        public async Task AddCreditCard(CreditCard creditCard)
         {
-            _context.Add(creditCard);
-            _context.SaveChanges();
+            await _context.AddAsync(creditCard);
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateCreditCard(CreditCard creditCard)
+        public async Task UpdateCreditCard(CreditCard creditCard)
         {
             _context.Update(creditCard);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void RemoveCreditCard(CreditCard creditCard)
+        public async Task RemoveCreditCard(CreditCard creditCard)
         {
             _context.Remove(creditCard);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

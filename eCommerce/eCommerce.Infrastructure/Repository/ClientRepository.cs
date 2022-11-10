@@ -18,30 +18,30 @@ namespace eCommerce.Infrastructure.Repository
 
         public async Task<IEnumerable<Client>> GetClients()
         {
-            return await _context.Clients.Include(client => client.Addresses).ToListAsync();
+            return await _context.Clients.ToListAsync();
         }
 
-        public async Task<Client> GetClientById(int? id)
+        public async Task<Client> GetClientById(int id)
         {
-            return await _context.Clients.FindAsync(id);
+            return await _context.Clients.Include(client => client.Addresses).Include(creditCard => creditCard.CreditCards).Include(order => order.Orders).FirstOrDefaultAsync(client => client.Id == id);
         }
 
-        public void AddClient(Client client)
+        public async Task AddClient(Client client)
         {
-            _context.Add(client);
-            _context.SaveChanges();
+            await _context.AddAsync(client);
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateClient(Client client)
+        public async Task UpdateClient(Client client)
         {
             _context.Update(client);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void RemoveClient(Client client)
+        public async Task RemoveClient(Client client)
         {
             _context.Remove(client);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

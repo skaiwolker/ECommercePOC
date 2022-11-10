@@ -8,12 +8,12 @@ namespace eCommerce.Infrastructure.Interfaces
     {
         Task<IEnumerable<Order>> GetOrders();
 
-        Task<Order> GetOrderById(int? id);
+        Task<Order> GetOrderById(int id);
 
-        void AddOrder(Order order);
+        Task AddOrder(Order order);
 
-        void UpdateOrder(Order order);
+        Task UpdateOrder(Order order);
 
-        void RemoveOrder(Order order);
+        Task RemoveOrder(Order order);
     }
 }

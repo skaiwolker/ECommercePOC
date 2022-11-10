@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using eCommerce.Services.Interfaces;
 using eCommerce.Domain.DTOs;
+using System.Collections.Generic;
 
 namespace eCommerce.Api.Controllers
 {
@@ -18,14 +19,14 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetClients()
+        public async Task<ActionResult<List<ClientDTO>>> GetClients()
         {
             var result = await _clientService.GetClients();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetClientById(int id)
+        public async Task<ActionResult<ClientDTO>> GetClientById(int id)
         {
             var client = await _clientService.GetClientById(id);
 
@@ -35,11 +36,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddClient([FromBody] ClientDTO clientDTO)
+        public async Task<ActionResult<ClientDTO>> AddClient([FromBody] ClientDTO clientDTO)
         {
             try
             {
-                _clientService.AddClient(clientDTO);
+                await _clientService.AddClient(clientDTO);
                 return Ok(clientDTO);
             }catch(Exception ex)
             {
@@ -48,11 +49,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateClient([FromBody] ClientDTO clientDTO)
+        public async Task<ActionResult<ClientDTO>> UpdateClient([FromBody] ClientDTO clientDTO)
         {
             try
             {
-                _clientService.UpdateClient(clientDTO);
+                await _clientService.UpdateClient(clientDTO);
                 return Ok(clientDTO);
             }
             catch (Exception e)
@@ -62,12 +63,12 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult RemoveClient(int id)
+        public async Task<ActionResult<bool>> RemoveClient(int id)
         {
             try
             {
-                _clientService.RemoveClient(id);
-                return Ok();
+                bool result = await _clientService.RemoveClient(id);
+                return Ok(result);
             }
             catch (Exception e)
             {

@@ -8,12 +8,12 @@ namespace eCommerce.Services.Interfaces
     {
         Task<IEnumerable<ClientDTO>> GetClients();
 
-        Task<ClientDTO> GetClientById(int? id);
+        Task<ClientDTO> GetClientById(int id);
 
-        void AddClient(ClientDTO client);
+        Task AddClient(ClientDTO client);
 
-        void UpdateClient(ClientDTO client);
+        Task UpdateClient(ClientDTO client);
 
-        void RemoveClient(int? id);
+        Task<bool> RemoveClient(int id);
     }
 }

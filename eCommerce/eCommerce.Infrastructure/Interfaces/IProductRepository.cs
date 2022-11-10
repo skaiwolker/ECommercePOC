@@ -10,10 +10,10 @@ namespace eCommerce.Infrastructure.Interfaces
 
         Task<Product> GetProductById(int id);
 
-        void AddProduct(Product product);
+        Task AddProduct(Product product);
 
-        void UpdateProduct(Product product);
+        Task UpdateProduct(Product product);
 
-        void RemoveProduct(Product product);
+        Task RemoveProduct(Product product);
     }
 }

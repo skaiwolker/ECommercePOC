@@ -9,12 +9,12 @@ namespace eCommerce.Services.Interfaces
     {
         Task<IEnumerable<AddressDTO>> GetAddresses();
 
-        Task<AddressDTO> GetAddressById(int? id);
+        Task<AddressDTO> GetAddressById(int id);
 
-        void AddAddress(AddressDTO address);
+        Task AddAddress(AddressDTO address);
 
-        void UpdateAddress(AddressDTO address);
+        Task UpdateAddress(AddressDTO address);
 
-        void RemoveAddress(int? id);
+        Task<bool> RemoveAddress(int id);
     }
 }

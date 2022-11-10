@@ -3,6 +3,7 @@ using System;
 using System.Threading.Tasks;
 using eCommerce.Services.Interfaces;
 using eCommerce.Domain.DTOs;
+using System.Collections.Generic;
 
 namespace eCommerce.Api.Controllers
 {
@@ -18,14 +19,14 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAddresses()
+        public async Task<ActionResult<List<AddressDTO>>> GetAddresses()
         {
             var result = await _addressService.GetAddresses();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetAddressById(int id)
+        public async Task<ActionResult<AddressDTO>> GetAddressById(int id)
         {
             var address = await _addressService.GetAddressById(id);
 
@@ -35,11 +36,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddAddress([FromBody] AddressDTO addressDTO)
+        public async Task<ActionResult<AddressDTO>> AddAddress([FromBody] AddressDTO addressDTO)
         {
             try
             {
-                _addressService.AddAddress(addressDTO);
+                await _addressService.AddAddress(addressDTO);
                 return Ok(addressDTO);
             }catch(Exception ex)
             {
@@ -48,11 +49,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateAddress([FromBody] AddressDTO addressDTO)
+        public async Task<ActionResult<AddressDTO>> UpdateAddress([FromBody] AddressDTO addressDTO)
         {
             try
             {
-                _addressService.UpdateAddress(addressDTO);
+                await _addressService.UpdateAddress(addressDTO);
                 return Ok(addressDTO);
             }
             catch (Exception e)
@@ -62,12 +63,12 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult RemoveAddress(int id)
+        public async Task<ActionResult<bool>> RemoveAddress(int id)
         {
             try
             {
-                _addressService.RemoveAddress(id);
-                return Ok();
+                bool result = await _addressService.RemoveAddress(id);
+                return Ok(result);
             }
             catch (Exception e)
             {

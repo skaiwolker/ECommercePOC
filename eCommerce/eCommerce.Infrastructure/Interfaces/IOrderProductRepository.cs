@@ -14,6 +14,6 @@ namespace eCommerce.Infrastructure.Interfaces
 
         Task UpdateOrderProduct(OrderProduct orderProduct);
 
-        void RemoveOrderProduct(OrderProduct orderProduct);
+        Task RemoveOrderProduct(OrderProduct orderProduct);
     }
 }

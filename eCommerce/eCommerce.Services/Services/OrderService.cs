@@ -3,6 +3,7 @@ using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Interfaces;
 using eCommerce.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,10 +20,10 @@ namespace eCommerce.Services.Services
             _mapper = mapper;
         }
 
-        public void AddOrder(OrderDTO orderDTO)
+        public async Task AddOrder(OrderDTO orderDTO)
         {
             var order = _mapper.Map<Order>(orderDTO);
-            _orderRepository.AddOrder(order);
+            await _orderRepository.AddOrder(order);
         }
 
         public async Task<IEnumerable<OrderDTO>> GetOrders()
@@ -31,22 +32,27 @@ namespace eCommerce.Services.Services
             return _mapper.Map<IEnumerable<OrderDTO>>(result);
         }
 
-        public async Task<OrderDTO> GetOrderById(int? id)
+        public async Task<OrderDTO> GetOrderById(int id)
         {
             var result = await _orderRepository.GetOrderById(id);
             return _mapper.Map<OrderDTO>(result);
         }
 
-        public void UpdateOrder(OrderDTO orderDTO)
+        public async Task UpdateOrder(OrderDTO orderDTO)
         {
             var order = _mapper.Map<Order>(orderDTO);
-            _orderRepository.UpdateOrder(order);
+            await _orderRepository.UpdateOrder(order);
         }
 
-        public void RemoveOrder(int? id)
+        public async Task<bool> RemoveOrder(int id)
         {
             var order = _orderRepository.GetOrderById(id).Result;
-            _orderRepository.RemoveOrder(order);
+
+            if (order != null) {
+                await _orderRepository.RemoveOrder(order);
+                return true;
+            }
+            throw new Exception("Invalid Order Id");
         }
     }
 }

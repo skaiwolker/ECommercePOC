@@ -14,7 +14,7 @@ namespace eCommerce.Services.Interfaces
 
         Task UpdateOrderProduct(OrderProductDTO orderProduct);
 
-        void RemoveOrderProduct(int id);
+        Task<bool> RemoveOrderProduct(int id);
     }
 }
 

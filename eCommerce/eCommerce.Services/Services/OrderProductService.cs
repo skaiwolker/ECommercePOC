@@ -3,6 +3,7 @@ using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Interfaces;
 using eCommerce.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -30,7 +31,7 @@ namespace eCommerce.Services.Services
 
             if (product.Amount >= 0) {
                 await _orderProductRepository.AddOrderProduct(orderProduct);
-                _productRepository.UpdateProduct(product);
+                await _productRepository.UpdateProduct(product);
             }
         }
 
@@ -59,14 +60,19 @@ namespace eCommerce.Services.Services
             if (oldOrderProduct.Product.Amount >= 0)
             {
                 await _orderProductRepository.UpdateOrderProduct(oldOrderProduct); 
-                _productRepository.UpdateProduct(oldOrderProduct.Product);
+                await _productRepository.UpdateProduct(oldOrderProduct.Product);
             }
         }
 
-        public void RemoveOrderProduct(int id)
+        public async Task<bool> RemoveOrderProduct(int id)
         {
             var orderProduct = _orderProductRepository.GetOrderProductById(id).Result;
-            _orderProductRepository.RemoveOrderProduct(orderProduct);
+
+            if (orderProduct != null) {
+                await _orderProductRepository.RemoveOrderProduct(orderProduct);
+                return true;
+            }
+            throw new Exception("Invalid OrderProduct Id");
         }
     }
 }

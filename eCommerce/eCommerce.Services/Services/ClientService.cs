@@ -3,6 +3,7 @@ using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Interfaces;
 using eCommerce.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,10 +20,10 @@ namespace eCommerce.Services.Services
             _mapper = mapper;
         }
 
-        public void AddClient(ClientDTO clientDTO)
+        public async Task AddClient(ClientDTO clientDTO)
         {
             var client = _mapper.Map<Client>(clientDTO);
-            _clientRepository.AddClient(client);
+            await _clientRepository.AddClient(client);
         }
 
         public async Task<IEnumerable<ClientDTO>> GetClients()
@@ -31,22 +32,27 @@ namespace eCommerce.Services.Services
             return _mapper.Map<IEnumerable<ClientDTO>>(result);
         }
 
-        public async Task<ClientDTO> GetClientById(int? id)
+        public async Task<ClientDTO> GetClientById(int id)
         {
             var result = await _clientRepository.GetClientById(id);
             return _mapper.Map<ClientDTO>(result);
         }
 
-        public void UpdateClient(ClientDTO clientDTO)
+        public async Task UpdateClient(ClientDTO clientDTO)
         {
             var client = _mapper.Map<Client>(clientDTO);
-            _clientRepository.UpdateClient(client);
+            await _clientRepository.UpdateClient(client);
         }
 
-        public void RemoveClient(int? id)
+        public async Task<bool> RemoveClient(int id)
         {
             var client = _clientRepository.GetClientById(id).Result;
-            _clientRepository.RemoveClient(client);
+
+            if (client != null) {
+                await _clientRepository.RemoveClient(client);
+                return true;
+            }
+            throw new Exception("Invalid Client Id");
         }
     }
 }

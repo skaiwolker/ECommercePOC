@@ -2,6 +2,7 @@
 using eCommerce.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace eCommerce.Api.Controllers
@@ -18,14 +19,14 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetOrders()
+        public async Task<ActionResult<List<OrderDTO>>> GetOrders()
         {
             var result = await _orderService.GetOrders();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetOrderById(int id)
+        public async Task<ActionResult<OrderDTO>> GetOrderById(int id)
         {
             var order = await _orderService.GetOrderById(id);
 
@@ -35,11 +36,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddOrder([FromBody] OrderDTO orderDTO)
+        public async Task<ActionResult<OrderDTO>> AddOrder([FromBody] OrderDTO orderDTO)
         {
             try
             {
-                _orderService.AddOrder(orderDTO);
+                await _orderService.AddOrder(orderDTO);
                 return Ok(orderDTO);
             }catch(Exception ex)
             {
@@ -48,11 +49,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateOrder([FromBody] OrderDTO orderDTO)
+        public async Task<ActionResult<OrderDTO>> UpdateOrder([FromBody] OrderDTO orderDTO)
         {
             try
             {
-                _orderService.UpdateOrder(orderDTO);
+                await _orderService.UpdateOrder(orderDTO);
                 return Ok(orderDTO);
             }
             catch (Exception e)
@@ -62,12 +63,12 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult RemoveOrder(int id)
+        public async Task<ActionResult<bool>> RemoveOrder(int id)
         {
             try
             {
-                _orderService.RemoveOrder(id);
-                return Ok();
+                bool result = await _orderService.RemoveOrder(id);
+                return Ok(result);
             }
             catch (Exception e)
             {

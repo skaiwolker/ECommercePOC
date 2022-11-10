@@ -8,12 +8,12 @@ namespace eCommerce.Infrastructure.Interfaces
     {
         Task<IEnumerable<CreditCard>> GetCreditCards();
 
-        Task<CreditCard> GetCreditCardById(int? id);
+        Task<CreditCard> GetCreditCardById(int id);
 
-        void AddCreditCard(CreditCard creditCard);
+        Task AddCreditCard(CreditCard creditCard);
 
-        void UpdateCreditCard(CreditCard creditCard);
+        Task UpdateCreditCard(CreditCard creditCard);
 
-        void RemoveCreditCard(CreditCard creditCard);
+        Task RemoveCreditCard(CreditCard creditCard);
     }
 }

@@ -23,7 +23,7 @@ namespace eCommerce.Infrastructure.Repository
 
         public async Task<OrderProduct> GetOrderProductById(int id)
         {
-            return await _context.OrderProducts.Include(x => x.Product).FirstOrDefaultAsync(orderProduct => orderProduct.Id == id);
+            return await _context.OrderProducts.Include(orderProduct => orderProduct.Product).FirstOrDefaultAsync(orderProduct => orderProduct.Id == id);
         }
 
         public async Task AddOrderProduct(OrderProduct orderProduct)
@@ -38,10 +38,10 @@ namespace eCommerce.Infrastructure.Repository
             await _context.SaveChangesAsync();
         }
 
-        public void RemoveOrderProduct(OrderProduct orderProduct)
+        public async Task RemoveOrderProduct(OrderProduct orderProduct)
         {
             _context.Remove(orderProduct);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

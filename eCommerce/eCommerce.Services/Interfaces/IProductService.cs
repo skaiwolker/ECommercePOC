@@ -10,10 +10,10 @@ namespace eCommerce.Services.Interfaces
 
         Task<ProductDTO> GetProductById(int id);
 
-        void AddProduct(ProductDTO product);
+        Task AddProduct(ProductDTO product);
 
-        void UpdateProduct(ProductDTO product);
+        Task UpdateProduct(ProductDTO product);
 
-        void RemoveProduct(int id);
+        Task<bool> RemoveProduct(int id);
     }
 }

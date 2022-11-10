@@ -26,7 +26,7 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetOrderProductById(int id)
+        public async Task<ActionResult<OrderProductDTO>> GetOrderProductById(int id)
         {
             var orderProduct = await _orderProductService.GetOrderProductById(id);
 
@@ -49,7 +49,7 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateOrderProduct([FromBody] OrderProductDTO orderProductDTO)
+        public async Task<ActionResult<OrderProductDTO>> UpdateOrderProduct([FromBody] OrderProductDTO orderProductDTO)
         {
             try
             {
@@ -63,12 +63,12 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult RemoveorderProduct(int id)
+        public async Task<ActionResult<bool>> RemoveorderProduct(int id)
         {
             try
             {
-                _orderProductService.RemoveOrderProduct(id);
-                return Ok();
+                bool result = await _orderProductService.RemoveOrderProduct(id);
+                return Ok(result);
             }
             catch (Exception e)
             {

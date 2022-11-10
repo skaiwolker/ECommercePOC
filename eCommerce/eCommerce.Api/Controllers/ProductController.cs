@@ -2,6 +2,7 @@
 using eCommerce.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace eCommerce.Api.Controllers
@@ -18,14 +19,14 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetProducts()
+        public async Task<ActionResult<List<ProductDTO>>> GetProducts()
         {
             var result = await _productService.GetProducts();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetProductById(int id)
+        public async Task<ActionResult<ProductDTO>> GetProductById(int id)
         {
             var product = await _productService.GetProductById(id);
 
@@ -35,11 +36,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddProduct([FromBody] ProductDTO productDTO)
+        public async Task<ActionResult<ProductDTO>> AddProduct([FromBody] ProductDTO productDTO)
         {
             try
             {
-                _productService.AddProduct(productDTO);
+                await _productService.AddProduct(productDTO);
                 return Ok(productDTO);
             }catch(Exception ex)
             {
@@ -48,11 +49,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateProduct([FromBody] ProductDTO productDTO)
+        public async Task<ActionResult<ProductDTO>> UpdateProduct([FromBody] ProductDTO productDTO)
         {
             try
             {
-                _productService.UpdateProduct(productDTO);
+                await _productService.UpdateProduct(productDTO);
                 return Ok(productDTO);
             }
             catch (Exception e)
@@ -62,12 +63,12 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult RemoveProduct(int id)
+        public async Task<ActionResult<bool>> RemoveProduct(int id)
         {
             try
             {
-                _productService.RemoveProduct(id);
-                return Ok();
+                bool result = await _productService.RemoveProduct(id);
+                return Ok(result);
             }
             catch (Exception e)
             {

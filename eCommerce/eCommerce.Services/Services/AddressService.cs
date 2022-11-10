@@ -3,6 +3,7 @@ using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Interfaces;
 using eCommerce.Services.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -19,10 +20,10 @@ namespace eCommerce.Services.Services
             _mapper = mapper;
         }
 
-        public void AddAddress(AddressDTO addressDTO)
+        public async Task AddAddress(AddressDTO addressDTO)
         {
             var address = _mapper.Map<Address>(addressDTO);
-            _addressRepository.AddAddress(address);
+            await _addressRepository.AddAddress(address);
         }
 
         public async Task<IEnumerable<AddressDTO>> GetAddresses()
@@ -31,22 +32,26 @@ namespace eCommerce.Services.Services
             return _mapper.Map<IEnumerable<AddressDTO>>(result);
         }
 
-        public async Task<AddressDTO> GetAddressById(int? id)
+        public async Task<AddressDTO> GetAddressById(int id)
         {
             var result = await _addressRepository.GetAddressById(id);
             return _mapper.Map<AddressDTO>(result);
         }
 
-        public void UpdateAddress(AddressDTO addressDTO)
+        public async Task UpdateAddress(AddressDTO addressDTO)
         {
             var address = _mapper.Map<Address>(addressDTO);
-            _addressRepository.UpdateAddress(address);
+            await _addressRepository.UpdateAddress(address);
         }
 
-        public void RemoveAddress(int? id)
+        public async Task<bool> RemoveAddress(int id)
         {
             var address = _addressRepository.GetAddressById(id).Result;
-            _addressRepository.RemoveAddress(address);
+            if (address != null) {
+                await _addressRepository.RemoveAddress(address);
+                return true;
+            }
+            throw new Exception("Invalid Address Id");
         }
     }
 }

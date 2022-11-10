@@ -2,6 +2,7 @@
 using eCommerce.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace eCommerce.Api.Controllers
@@ -18,14 +19,14 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetCreditCards()
+        public async Task<ActionResult<List<CreditCardDTO>>> GetCreditCards()
         {
             var result = await _creditCardService.GetCreditCards();
             return Ok(result);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCreditCardById(int id)
+        public async Task<ActionResult<CreditCardDTO>> GetCreditCardById(int id)
         {
             var creditCard = await _creditCardService.GetCreditCardById(id);
 
@@ -35,11 +36,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddCreditCard([FromBody] CreditCardDTO creditCardDTO)
+        public async Task<ActionResult<CreditCardDTO>> AddCreditCard([FromBody] CreditCardDTO creditCardDTO)
         {
             try
             {
-                _creditCardService.AddCreditCard(creditCardDTO);
+                await _creditCardService.AddCreditCard(creditCardDTO);
                 return Ok(creditCardDTO);
             }catch(Exception ex)
             {
@@ -48,11 +49,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateCreditCard([FromBody] CreditCardDTO creditCardDTO)
+        public async Task<ActionResult<CreditCardDTO>> UpdateCreditCard([FromBody] CreditCardDTO creditCardDTO)
         {
             try
             {
-                _creditCardService.UpdateCreditCard(creditCardDTO);
+                await _creditCardService.UpdateCreditCard(creditCardDTO);
                 return Ok(creditCardDTO);
             }
             catch (Exception e)
@@ -62,12 +63,12 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpDelete("{id}")]
-        public IActionResult RemoveCreditCard(int id)
+        public async Task<ActionResult<bool>> RemoveCreditCard(int id)
         {
             try
             {
-                _creditCardService.RemoveCreditCard(id);
-                return Ok();
+                bool result = await _creditCardService.RemoveCreditCard(id);
+                return Ok(result);
             }
             catch (Exception e)
             {

@@ -8,12 +8,12 @@ namespace eCommerce.Services.Interfaces
     {
         Task<IEnumerable<OrderDTO>> GetOrders();
 
-        Task<OrderDTO> GetOrderById(int? id);
+        Task<OrderDTO> GetOrderById(int id);
 
-        void AddOrder(OrderDTO order);
+        Task AddOrder(OrderDTO order);
 
-        void UpdateOrder(OrderDTO order);
+        Task UpdateOrder(OrderDTO order);
 
-        void RemoveOrder(int? id);
+        Task<bool> RemoveOrder(int id);
     }
 }

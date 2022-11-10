@@ -21,27 +21,27 @@ namespace eCommerce.Infrastructure.Repository
             return await _context.Addresses.ToListAsync();
         }
 
-        public async Task<Address> GetAddressById(int? id)
+        public async Task<Address> GetAddressById(int id)
         {
-            return await _context.Addresses.FindAsync(id);
+            return await _context.Addresses.FirstOrDefaultAsync(address => address.Id == id);
         }
 
-        public void AddAddress(Address address)
+        public async Task AddAddress(Address address)
         {
-            _context.Add(address);
-            _context.SaveChanges();
+            await _context.AddAsync(address);
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateAddress(Address address)
+        public async Task UpdateAddress(Address address)
         {
             _context.Update(address);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void RemoveAddress(Address address)
+        public async Task RemoveAddress(Address address)
         {
             _context.Remove(address);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }
