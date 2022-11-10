@@ -17,6 +17,7 @@ C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\bin\Debug\ne
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\bin\Debug\net5.0\eCommerce.Domain.runtimeconfig.json
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\bin\Debug\net5.0\eCommerce.Domain.runtimeconfig.dev.json
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\bin\Debug\net5.0\eCommerce.Domain.dll
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\bin\Debug\net5.0\ref\eCommerce.Domain.dll
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\bin\Debug\net5.0\eCommerce.Domain.pdb
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\obj\Debug\net5.0\eCommerce.Domain.csproj.AssemblyReference.cache
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\obj\Debug\net5.0\eCommerce.Domain.GeneratedMSBuildEditorConfig.editorconfig
@@ -27,4 +28,3 @@ C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\obj\Debug\ne
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\obj\Debug\net5.0\ref\eCommerce.Domain.dll
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\obj\Debug\net5.0\eCommerce.Domain.pdb
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\obj\Debug\net5.0\eCommerce.Domain.genruntimeconfig.cache
-C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\bin\Debug\net5.0\ref\eCommerce.Domain.dll

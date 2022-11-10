@@ -1,10 +1,8 @@
-﻿using eCommerce.Infrastructure.Interfaces;
-using eCommerce.Infrastructure.DTOs;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
+using eCommerce.Services.Interfaces;
+using eCommerce.Domain.DTOs;
 
 namespace eCommerce.Api.Controllers
 {

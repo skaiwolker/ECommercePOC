@@ -118,6 +118,31 @@ namespace eCommerce.Infrastructure.Migrations
                     b.ToTable("Orders");
                 });
 
+            modelBuilder.Entity("eCommerce.Domain.Models.OrderProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderProducts");
+                });
+
             modelBuilder.Entity("eCommerce.Domain.Models.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -146,28 +171,6 @@ namespace eCommerce.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("eCommerce.Domain.Models.Stock", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("OrderId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
-
-                    b.ToTable("Stocks");
                 });
 
             modelBuilder.Entity("eCommerce.Domain.Models.Address", b =>
@@ -203,16 +206,16 @@ namespace eCommerce.Infrastructure.Migrations
                     b.Navigation("Client");
                 });
 
-            modelBuilder.Entity("eCommerce.Domain.Models.Stock", b =>
+            modelBuilder.Entity("eCommerce.Domain.Models.OrderProduct", b =>
                 {
                     b.HasOne("eCommerce.Domain.Models.Order", "Order")
-                        .WithMany("Stocks")
+                        .WithMany("OrderProducts")
                         .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("eCommerce.Domain.Models.Product", "Product")
-                        .WithMany("Stocks")
+                        .WithMany("OrderProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -233,12 +236,12 @@ namespace eCommerce.Infrastructure.Migrations
 
             modelBuilder.Entity("eCommerce.Domain.Models.Order", b =>
                 {
-                    b.Navigation("Stocks");
+                    b.Navigation("OrderProducts");
                 });
 
             modelBuilder.Entity("eCommerce.Domain.Models.Product", b =>
                 {
-                    b.Navigation("Stocks");
+                    b.Navigation("OrderProducts");
                 });
 #pragma warning restore 612, 618
         }

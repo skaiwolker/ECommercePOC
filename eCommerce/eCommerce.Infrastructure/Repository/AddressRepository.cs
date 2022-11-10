@@ -1,11 +1,8 @@
-﻿using eCommerce.Domain.Interfaces;
-using eCommerce.Domain.Models;
+﻿using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Context;
+using eCommerce.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace eCommerce.Infrastructure.Repository

@@ -1,5 +1,5 @@
-﻿using eCommerce.Infrastructure.DTOs;
-using eCommerce.Infrastructure.Interfaces;
+﻿using eCommerce.Domain.DTOs;
+using eCommerce.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

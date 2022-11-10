@@ -2,6 +2,7 @@ C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net5.0\eCommerce.Infrastructure.runtimeconfig.json
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net5.0\eCommerce.Infrastructure.runtimeconfig.dev.json
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net5.0\eCommerce.Infrastructure.dll
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net5.0\ref\eCommerce.Infrastructure.dll
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net5.0\eCommerce.Infrastructure.pdb
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net5.0\eCommerce.Domain.dll
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net5.0\eCommerce.Domain.pdb
@@ -15,4 +16,3 @@ C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net5.0\ref\eCommerce.Infrastructure.dll
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net5.0\eCommerce.Infrastructure.pdb
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net5.0\eCommerce.Infrastructure.genruntimeconfig.cache
-C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net5.0\ref\eCommerce.Infrastructure.dll

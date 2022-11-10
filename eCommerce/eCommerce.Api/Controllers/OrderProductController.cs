@@ -1,7 +1,8 @@
-﻿using eCommerce.Infrastructure.DTOs;
-using eCommerce.Infrastructure.Interfaces;
+﻿using eCommerce.Domain.DTOs;
+using eCommerce.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace eCommerce.Api.Controllers
@@ -18,7 +19,7 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetOrderProducts()
+        public async Task<ActionResult<List<OrderProductDTO>>> GetOrderProducts()
         {
             var result = await _orderProductService.GetOrderProducts();
             return Ok(result);
@@ -35,11 +36,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPost]
-        public IActionResult AddOrderProduct([FromBody] OrderProductDTO orderProductDTO)
+        public async Task<ActionResult<OrderProductDTO>> AddOrderProduct([FromBody] OrderProductDTO orderProductDTO)
         {
             try
             {
-                _orderProductService.AddOrderProduct(orderProductDTO);
+                await _orderProductService.AddOrderProduct(orderProductDTO);
                 return Ok(orderProductDTO);
             }catch(Exception ex)
             {
@@ -48,11 +49,11 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPut]
-        public IActionResult UpdateOrderProduct([FromBody] OrderProductDTO orderProductDTO)
+        public async Task<IActionResult> UpdateOrderProduct([FromBody] OrderProductDTO orderProductDTO)
         {
             try
             {
-                _orderProductService.UpdateOrderProduct(orderProductDTO);
+                 await _orderProductService.UpdateOrderProduct(orderProductDTO);
                 return Ok(orderProductDTO);
             }
             catch (Exception e)

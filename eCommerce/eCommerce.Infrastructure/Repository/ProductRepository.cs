@@ -1,11 +1,8 @@
-﻿using eCommerce.Domain.Interfaces;
-using eCommerce.Domain.Models;
+﻿using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Context;
+using eCommerce.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace eCommerce.Infrastructure.Repository
@@ -24,9 +21,9 @@ namespace eCommerce.Infrastructure.Repository
             return await _context.Products.ToListAsync();
         }
 
-        public async Task<Product> GetProductById(int? id)
+        public async Task<Product> GetProductById(int id)
         {
-            return await _context.Products.FindAsync(id);
+            return await _context.Products.FirstOrDefaultAsync(product => product.Id == id);
         }
 
         public void AddProduct(Product product)
@@ -37,7 +34,7 @@ namespace eCommerce.Infrastructure.Repository
 
         public void UpdateProduct(Product product)
         {
-            _context.Update(product);
+            _context.Products.Update(product);
             _context.SaveChanges();
         }
 

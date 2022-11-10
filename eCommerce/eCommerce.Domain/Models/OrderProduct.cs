@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace eCommerce.Domain.Models
 {
@@ -15,6 +10,8 @@ namespace eCommerce.Domain.Models
 
         //public Seller Seller { get; set; }
         //public int SellerId { get; set; }
+
+        public int Amount { get; set; }
 
         public virtual Order Order { get; set; }
 

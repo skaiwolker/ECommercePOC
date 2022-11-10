@@ -1,0 +1,19 @@
+﻿using eCommerce.Domain.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+
+namespace eCommerce.Infrastructure.Interfaces
+{
+    public interface IOrderProductRepository
+    {
+        Task<IEnumerable<OrderProduct>> GetOrderProducts();
+
+        Task<OrderProduct> GetOrderProductById(int id);
+
+        Task AddOrderProduct(OrderProduct orderProduct);
+
+        Task UpdateOrderProduct(OrderProduct orderProduct);
+
+        void RemoveOrderProduct(OrderProduct orderProduct);
+    }
+}

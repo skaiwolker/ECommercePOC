@@ -1,11 +1,8 @@
-﻿using eCommerce.Domain.Interfaces;
-using eCommerce.Domain.Models;
+﻿using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Context;
+using eCommerce.Infrastructure.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace eCommerce.Infrastructure.Repository
@@ -24,21 +21,21 @@ namespace eCommerce.Infrastructure.Repository
             return await _context.OrderProducts.ToListAsync();
         }
 
-        public async Task<OrderProduct> GetOrderProductById(int? id)
+        public async Task<OrderProduct> GetOrderProductById(int id)
         {
-            return await _context.OrderProducts.FindAsync(id);
+            return await _context.OrderProducts.Include(x => x.Product).FirstOrDefaultAsync(orderProduct => orderProduct.Id == id);
         }
 
-        public void AddOrderProduct(OrderProduct orderProduct)
+        public async Task AddOrderProduct(OrderProduct orderProduct)
         {
-            _context.Add(orderProduct);
-            _context.SaveChanges();
+            await _context.AddAsync(orderProduct);
+            await _context.SaveChangesAsync();
         }
 
-        public void UpdateOrderProduct(OrderProduct orderProduct)
+        public async Task UpdateOrderProduct(OrderProduct orderProduct)
         {
             _context.Update(orderProduct);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         public void RemoveOrderProduct(OrderProduct orderProduct)

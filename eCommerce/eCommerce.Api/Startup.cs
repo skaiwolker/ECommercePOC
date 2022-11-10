@@ -7,10 +7,10 @@ using Microsoft.OpenApi.Models;
 using System;
 using eCommerce.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using eCommerce.Domain.Interfaces;
-using eCommerce.Infrastructure.Services;
 using eCommerce.Infrastructure.Repository;
+using eCommerce.Services.Interfaces;
 using eCommerce.Infrastructure.Interfaces;
+using eCommerce.Services.Services;
 
 namespace eCommerce.Api
 {
@@ -26,7 +26,7 @@ namespace eCommerce.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<eCommerceContext>(options => options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<eCommerceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IClientService, ClientService>();

@@ -1,13 +1,8 @@
 ﻿using AutoMapper;
+using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
-using eCommerce.Infrastructure.DTOs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace eCommerce.Domain.Profiles
+namespace eCommerce.Infrastructure.Profiles
 {
     public class AddressProfile: Profile
     {

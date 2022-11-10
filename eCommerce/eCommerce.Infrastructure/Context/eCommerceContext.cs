@@ -1,10 +1,5 @@
 ﻿using eCommerce.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace eCommerce.Infrastructure.Context
 {
@@ -40,13 +35,13 @@ namespace eCommerce.Infrastructure.Context
                 .WithMany(client => client.Orders)
                 .HasForeignKey(order => order.ClientId);
 
-            builder.Entity<OrderProduct>().HasOne(cart => cart.Order)
+            builder.Entity<OrderProduct>().HasOne(orderProduct => orderProduct.Order)
                 .WithMany(order => order.OrderProducts)
-                .HasForeignKey(cart => cart.OrderId);
+                .HasForeignKey(orderProduct => orderProduct.OrderId);
 
-            builder.Entity<OrderProduct>().HasOne(cart => cart.Product)
+            builder.Entity<OrderProduct>().HasOne(orderProduct => orderProduct.Product)
                 .WithMany(product => product.OrderProducts)
-                .HasForeignKey(cart => cart.ProductId);
+                .HasForeignKey(orderProduct => orderProduct.ProductId);
         }
     }
 }

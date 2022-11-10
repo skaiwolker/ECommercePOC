@@ -2388,6 +2388,25 @@
         "runtime": {
           "bin/placeholder/eCommerce.Infrastructure.dll": {}
         }
+      },
+      "eCommerce.Services/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "AutoMapper": "12.0.0",
+          "AutoMapper.Extensions.Microsoft.DependencyInjection": "12.0.0",
+          "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.17",
+          "Microsoft.EntityFrameworkCore.Proxies": "5.0.17",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "eCommerce.Domain": "1.0.0",
+          "eCommerce.Infrastructure": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/eCommerce.Services.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/eCommerce.Services.dll": {}
+        }
       }
     }
   },
@@ -7920,6 +7939,11 @@
       "type": "project",
       "path": "../eCommerce.Infrastructure/eCommerce.Infrastructure.csproj",
       "msbuildProject": "../eCommerce.Infrastructure/eCommerce.Infrastructure.csproj"
+    },
+    "eCommerce.Services/1.0.0": {
+      "type": "project",
+      "path": "../eCommerce.Services/eCommerce.Services.csproj",
+      "msbuildProject": "../eCommerce.Services/eCommerce.Services.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -7931,7 +7955,8 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.17",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.17",
       "Swashbuckle.AspNetCore >= 5.6.3",
-      "eCommerce.Infrastructure >= 1.0.0"
+      "eCommerce.Domain >= 1.0.0",
+      "eCommerce.Services >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -7961,8 +7986,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Infrastructure.csproj": {
-              "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Infrastructure.csproj"
+            "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj": {
+              "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj"
+            },
+            "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Services\\eCommerce.Services.csproj": {
+              "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Services\\eCommerce.Services.csproj"
             }
           }
         }
