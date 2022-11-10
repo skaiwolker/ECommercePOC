@@ -8,9 +8,9 @@ using System;
 using eCommerce.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
 using eCommerce.Infrastructure.Repository;
-using eCommerce.Services.Interfaces;
-using eCommerce.Infrastructure.Interfaces;
 using eCommerce.Services.Services;
+using eCommerce.Services.Services.Interfaces;
+using eCommerce.Infrastructure.Repository.Interfaces;
 
 namespace eCommerce.Api
 {

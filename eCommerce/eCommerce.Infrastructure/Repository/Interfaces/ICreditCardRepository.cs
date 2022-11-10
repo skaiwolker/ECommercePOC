@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace eCommerce.Infrastructure.Interfaces
+namespace eCommerce.Infrastructure.Repository.Interfaces
 {
     public interface ICreditCardRepository
     {

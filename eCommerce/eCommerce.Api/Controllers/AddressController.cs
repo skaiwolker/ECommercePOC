@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
-using eCommerce.Services.Interfaces;
 using eCommerce.Domain.DTOs;
 using System.Collections.Generic;
+using eCommerce.Services.Services.Interfaces;
 
 namespace eCommerce.Api.Controllers
 {

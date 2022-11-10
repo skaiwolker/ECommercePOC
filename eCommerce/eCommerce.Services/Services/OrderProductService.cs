@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
-using eCommerce.Infrastructure.Interfaces;
-using eCommerce.Services.Interfaces;
+using eCommerce.Infrastructure.Repository.Interfaces;
+using eCommerce.Services.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

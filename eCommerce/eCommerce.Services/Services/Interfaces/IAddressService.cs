@@ -3,7 +3,7 @@ using eCommerce.Domain.DTOs;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace eCommerce.Services.Interfaces
+namespace eCommerce.Services.Services.Interfaces
 {
     public interface IAddressService
     {

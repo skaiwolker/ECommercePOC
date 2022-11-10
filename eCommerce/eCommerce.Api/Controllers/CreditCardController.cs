@@ -1,5 +1,5 @@
 ﻿using eCommerce.Domain.DTOs;
-using eCommerce.Services.Interfaces;
+using eCommerce.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
