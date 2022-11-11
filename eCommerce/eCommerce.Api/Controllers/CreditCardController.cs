@@ -1,4 +1,5 @@
 ﻿using eCommerce.Domain.DTOs;
+using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -69,6 +70,10 @@ namespace eCommerce.Api.Controllers
             {
                 bool result = await _creditCardService.RemoveCreditCard(id);
                 return Ok(result);
+            }
+            catch (IdNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception e)
             {

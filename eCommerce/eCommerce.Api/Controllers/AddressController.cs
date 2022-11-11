@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using eCommerce.Domain.DTOs;
 using System.Collections.Generic;
 using eCommerce.Services.Services.Interfaces;
+using eCommerce.Services.Exceptions;
 
 namespace eCommerce.Api.Controllers
 {
@@ -69,6 +70,10 @@ namespace eCommerce.Api.Controllers
             {
                 bool result = await _addressService.RemoveAddress(id);
                 return Ok(result);
+            }
+            catch (IdNotFoundException ex)
+            {
+                return NotFound(ex.Message);
             }
             catch (Exception e)
             {

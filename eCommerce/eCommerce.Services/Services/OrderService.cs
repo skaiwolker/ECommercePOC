@@ -2,6 +2,7 @@
 using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Repository.Interfaces;
+using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -52,7 +53,7 @@ namespace eCommerce.Services.Services
                 await _orderRepository.RemoveOrder(order);
                 return true;
             }
-            throw new Exception("Invalid Order Id");
+            throw new IdNotFoundException("Order Id Not Found");
         }
     }
 }
