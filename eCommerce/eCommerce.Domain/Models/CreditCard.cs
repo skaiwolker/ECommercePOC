@@ -4,8 +4,6 @@ namespace eCommerce.Domain.Models
 {
     public class CreditCard
     {
-        [Key]
-        [Required]
         public int Id { get; set; }
 
         public string Name { get; set; }

@@ -1,20 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace eCommerce.Domain.Models
 {
     public class Product
     {
-        [Key]
-        [Required]
         public int Id { get; set; }
 
         public string Name { get; set; }
 
         public string Description { get; set; }
 
-        public string Category { get; set; }
+        public int Department { get; set; }
 
         public string Seller { get; set; }
         //public virtual Seller Seller { get; set; }
@@ -24,7 +21,6 @@ namespace eCommerce.Domain.Models
 
         public double Price { get; set; }
 
-        [JsonIgnore]
         public virtual List<OrderProduct> OrderProducts { get; set; }
     }
 }

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "7zHxHEVfLk+gxHu6eHlAq2CPyhjGTXQPMpWwsNKemLd+lQs7jYPo7oEdDrTId3X/Akh8GB1U5Sq196CaUX5hbA==",
+  "dgSpecHash": "7EbVWQLedlojDo1SDj6hDnpQcrUI/mwwbJapNlyinjN/OTD00AUPlcNi/TRxZ+nEdKeuIZM0vI6ieLA4VxnIUg==",
   "success": true,
   "projectFilePath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Api\\eCommerce.Api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\dartagnanl\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\dartagnanl\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\dartagnanl\\.nuget\\packages\\castle.core\\4.4.1\\castle.core.4.4.1.nupkg.sha512",
+    "C:\\Users\\dartagnanl\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\dartagnanl\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\dartagnanl\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.17\\microsoft.aspnetcore.cryptography.internal.5.0.17.nupkg.sha512",
     "C:\\Users\\dartagnanl\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.17\\microsoft.aspnetcore.cryptography.keyderivation.5.0.17.nupkg.sha512",

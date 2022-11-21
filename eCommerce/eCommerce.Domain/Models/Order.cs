@@ -6,8 +6,6 @@ namespace eCommerce.Domain.Models
 {
     public class Order
     {
-        [Key]
-        [Required]
         public int Id { get; set; }
 
         public int Status { get; set; }

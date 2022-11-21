@@ -6,6 +6,7 @@ using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace eCommerce.Services.Services
@@ -23,6 +24,11 @@ namespace eCommerce.Services.Services
 
         public async Task AddOrder(OrderDTO orderDTO)
         {
+            if (orderDTO.Status <= 0)
+            {
+                throw new eCommerceException("Status cannot be less or equal 0", HttpStatusCode.BadRequest);
+            }
+
             var order = _mapper.Map<Order>(orderDTO);
             await _orderRepository.AddOrder(order);
         }
@@ -36,12 +42,33 @@ namespace eCommerce.Services.Services
         public async Task<OrderDTO> GetOrderById(int id)
         {
             var result = await _orderRepository.GetOrderById(id);
+
+            if (result == null)
+            {
+                throw new eCommerceException("Order Not Found", HttpStatusCode.NotFound);
+            }
+
             return _mapper.Map<OrderDTO>(result);
         }
 
         public async Task UpdateOrder(OrderDTO orderDTO)
         {
-            var order = _mapper.Map<Order>(orderDTO);
+            if (orderDTO.Status <= 0)
+            {
+                throw new eCommerceException("Status cannot be less or equal 0", HttpStatusCode.BadRequest);
+            }
+
+            var order = await _orderRepository.GetOrderById(orderDTO.Id);
+
+            if (order == null)
+            {
+                throw new eCommerceException("Order Not Found", HttpStatusCode.NotFound);
+            }
+
+            //order = _mapper.Map<Order>(orderDTO);
+
+            order.Status = orderDTO.Status;
+
             await _orderRepository.UpdateOrder(order);
         }
 
@@ -49,11 +76,12 @@ namespace eCommerce.Services.Services
         {
             var order = _orderRepository.GetOrderById(id).Result;
 
-            if (order != null) {
+            if (order != null)
+            {
                 await _orderRepository.RemoveOrder(order);
                 return true;
             }
-            throw new IdNotFoundException("Order Id Not Found");
+            throw new eCommerceException("Order Not Found", HttpStatusCode.NotFound);
         }
     }
 }

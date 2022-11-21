@@ -7,8 +7,6 @@ namespace eCommerce.Domain.Models
 {
     public class Client
     {
-        [Key]
-        [Required]
         public int Id { get; set; }
 
         public string FirstName { get; set; }

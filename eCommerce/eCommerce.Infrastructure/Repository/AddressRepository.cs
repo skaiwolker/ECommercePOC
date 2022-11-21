@@ -4,26 +4,38 @@ using eCommerce.Infrastructure.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Dapper;
+using System.Data;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace eCommerce.Infrastructure.Repository
 {
     public class AddressRepository : IAddressRepository
     {
         private eCommerceContext _context;
+        private IDbConnection _connection;
+        private IConfiguration _configuration;
 
-        public AddressRepository(eCommerceContext context)
+        public AddressRepository(eCommerceContext context, IConfiguration configuration)
         {
             _context = context;
+            _configuration = configuration;
+            _connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+
         }
 
         public async Task<IEnumerable<Address>> GetAddresses()
         {
-            return await _context.Addresses.ToListAsync();
+            //return await _context.Addresses.ToListAsync();
+            return await _connection.QueryAsync<Address>("SELECT * FROM Addresses");
         }
 
         public async Task<Address> GetAddressById(int id)
         {
-            return await _context.Addresses.FirstOrDefaultAsync(address => address.Id == id);
+            //return await _context.Addresses.FirstOrDefaultAsync(address => address.Id == id);
+            var param = new { Id = id };
+            return await _connection.QueryFirstOrDefaultAsync<Address>("SELECT * FROM Addresses WHERE Id = @Id", param);
         }
 
         public async Task AddAddress(Address address)

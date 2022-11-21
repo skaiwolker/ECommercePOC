@@ -1,6 +1,7 @@
 ﻿using eCommerce.Domain.DTOs;
 using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,18 +23,49 @@ namespace eCommerce.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<CreditCardDTO>>> GetCreditCards()
         {
-            var result = await _creditCardService.GetCreditCards();
-            return Ok(result);
+            try
+            {
+                var result = await _creditCardService.GetCreditCards();
+                return Ok(result);
+            }
+            catch (eCommerceException ex)
+            {
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<CreditCardDTO>> GetCreditCardById(int id)
         {
-            var creditCard = await _creditCardService.GetCreditCardById(id);
-
-            if (creditCard == null) return NotFound();
-
-            return Ok(creditCard);
+            try
+            {
+                var creditCard = await _creditCardService.GetCreditCardById(id);
+                return Ok(creditCard);
+            }
+            catch (eCommerceException ex)
+            {
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
+            }
         }
 
         [HttpPost]
@@ -43,9 +75,20 @@ namespace eCommerce.Api.Controllers
             {
                 await _creditCardService.AddCreditCard(creditCardDTO);
                 return Ok(creditCardDTO);
-            }catch(Exception ex)
+            }
+            catch (eCommerceException ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
             }
         }
 
@@ -57,9 +100,19 @@ namespace eCommerce.Api.Controllers
                 await _creditCardService.UpdateCreditCard(creditCardDTO);
                 return Ok(creditCardDTO);
             }
+            catch (eCommerceException ex)
+            {
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
             }
         }
 
@@ -71,13 +124,19 @@ namespace eCommerce.Api.Controllers
                 bool result = await _creditCardService.RemoveCreditCard(id);
                 return Ok(result);
             }
-            catch (IdNotFoundException ex)
+            catch (eCommerceException ex)
             {
-                return NotFound(ex.Message);
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
             }
             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
             }
 
         }

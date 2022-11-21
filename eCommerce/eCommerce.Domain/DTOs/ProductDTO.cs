@@ -11,11 +11,11 @@ namespace eCommerce.Domain.DTOs
 
         public string Description { get; set; }
 
-        public string Category { get; set; }
+        public int Department { get; set; }
 
-        public string Supplier { get; set; }
-        //public virtual Supplier Supplier { get; set; }
-        //public int SupplierId { get; set; }
+        public string Seller { get; set; }
+        //public virtual Seller Seller { get; set; }
+        //public int SellerId { get; set; }
 
         public int Amount { get; set; }
 

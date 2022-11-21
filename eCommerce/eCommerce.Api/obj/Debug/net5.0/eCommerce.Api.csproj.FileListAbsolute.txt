@@ -78,3 +78,4 @@ C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Api\obj\Debug\net5.
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Api\obj\Debug\net5.0\ref\eCommerce.Api.dll
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Api\obj\Debug\net5.0\eCommerce.Api.pdb
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Api\obj\Debug\net5.0\eCommerce.Api.genruntimeconfig.cache
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Api\bin\Debug\net5.0\Dapper.dll

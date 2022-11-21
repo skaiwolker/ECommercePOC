@@ -1,11 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace eCommerce.Domain.Models
+﻿namespace eCommerce.Domain.Models
 {
     public class Address
     {
-        [Key]
-        [Required]
         public int Id { get; set; }
 
         public string PublicPlace { get; set; }

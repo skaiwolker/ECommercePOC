@@ -1,6 +1,7 @@
 ﻿using eCommerce.Domain.DTOs;
 using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,18 +23,49 @@ namespace eCommerce.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<OrderDTO>>> GetOrders()
         {
-            var result = await _orderService.GetOrders();
-            return Ok(result);
+            try
+            {
+                var result = await _orderService.GetOrders();
+                return Ok(result);
+            }
+            catch (eCommerceException ex)
+            {
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderDTO>> GetOrderById(int id)
         {
-            var order = await _orderService.GetOrderById(id);
-
-            if (order == null) return NotFound();
-
-            return Ok(order);
+            try
+            {
+                var order = await _orderService.GetOrderById(id);
+                return Ok(order);
+            }
+            catch (eCommerceException ex)
+            {
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
+            }
         }
 
         [HttpPost]
@@ -43,9 +75,20 @@ namespace eCommerce.Api.Controllers
             {
                 await _orderService.AddOrder(orderDTO);
                 return Ok(orderDTO);
-            }catch(Exception ex)
+            }
+            catch (eCommerceException ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
             }
         }
 
@@ -57,9 +100,19 @@ namespace eCommerce.Api.Controllers
                 await _orderService.UpdateOrder(orderDTO);
                 return Ok(orderDTO);
             }
+            catch (eCommerceException ex)
+            {
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
             }
         }
 
@@ -71,13 +124,19 @@ namespace eCommerce.Api.Controllers
                 bool result = await _orderService.RemoveOrder(id);
                 return Ok(result);
             }
-            catch (IdNotFoundException ex)
+            catch (eCommerceException ex)
             {
-                return NotFound(ex.Message);
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
             }
             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
             }
 
         }

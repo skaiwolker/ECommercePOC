@@ -27,3 +27,4 @@ C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\obj\Debug\ne
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\obj\Debug\net5.0\ref\eCommerce.Domain.dll
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\obj\Debug\net5.0\eCommerce.Domain.pdb
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\obj\Debug\net5.0\eCommerce.Domain.genruntimeconfig.cache
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Domain\obj\Debug\net5.0\eCommerce.Domain.csproj.AssemblyReference.cache

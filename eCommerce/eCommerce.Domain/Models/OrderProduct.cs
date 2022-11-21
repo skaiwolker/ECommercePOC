@@ -4,12 +4,7 @@ namespace eCommerce.Domain.Models
 {
     public class OrderProduct
     {
-        [Key]
-        [Required]
         public int Id { get; set; }
-
-        //public Seller Seller { get; set; }
-        //public int SellerId { get; set; }
 
         public int Amount { get; set; }
 

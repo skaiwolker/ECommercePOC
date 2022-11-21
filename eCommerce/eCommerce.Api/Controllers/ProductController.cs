@@ -1,6 +1,7 @@
 ﻿using eCommerce.Domain.DTOs;
 using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -22,18 +23,49 @@ namespace eCommerce.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<List<ProductDTO>>> GetProducts()
         {
-            var result = await _productService.GetProducts();
-            return Ok(result);
+            try
+            {
+                var result = await _productService.GetProducts();
+                return Ok(result);
+            }
+            catch (eCommerceException ex)
+            {
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
+            }
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<ProductDTO>> GetProductById(int id)
         {
-            var product = await _productService.GetProductById(id);
-
-            if (product == null) return NotFound();
-
-            return Ok(product);
+            try
+            {
+                var product = await _productService.GetProductById(id);
+                return Ok(product);
+            }
+            catch (eCommerceException ex)
+            {
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
+            }
         }
 
         [HttpPost]
@@ -43,9 +75,20 @@ namespace eCommerce.Api.Controllers
             {
                 await _productService.AddProduct(productDTO);
                 return Ok(productDTO);
-            }catch(Exception ex)
+            }
+            catch (eCommerceException ex)
             {
-                return StatusCode(500, ex.Message);
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
             }
         }
 
@@ -57,9 +100,19 @@ namespace eCommerce.Api.Controllers
                 await _productService.UpdateProduct(productDTO);
                 return Ok(productDTO);
             }
+            catch (eCommerceException ex)
+            {
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
             }
         }
 
@@ -71,13 +124,19 @@ namespace eCommerce.Api.Controllers
                 bool result = await _productService.RemoveProduct(id);
                 return Ok(result);
             }
-            catch (IdNotFoundException ex)
+            catch (eCommerceException ex)
             {
-                return NotFound(ex.Message);
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
             }
             catch (Exception e)
             {
-                return StatusCode(500, e.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
             }
 
         }
