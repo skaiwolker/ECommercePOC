@@ -1,12 +1,10 @@
 ﻿using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Context;
 using eCommerce.Infrastructure.Repository.Interfaces;
-using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dapper;
 using System.Data;
-using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
 
 namespace eCommerce.Infrastructure.Repository
@@ -14,15 +12,12 @@ namespace eCommerce.Infrastructure.Repository
     public class AddressRepository : IAddressRepository
     {
         private eCommerceContext _context;
-        private IDbConnection _connection;
-        private IConfiguration _configuration;
+        private readonly IDbConnection _connection;
 
         public AddressRepository(eCommerceContext context, IConfiguration configuration)
         {
             _context = context;
-            _configuration = configuration;
-            _connection = new SqlConnection(_configuration.GetConnectionString("DefaultConnection"));
-
+            _connection = _connection.AddConnection(configuration);
         }
 
         public async Task<IEnumerable<Address>> GetAddresses()

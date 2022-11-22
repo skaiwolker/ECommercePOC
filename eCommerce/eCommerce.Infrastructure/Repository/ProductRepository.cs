@@ -2,8 +2,7 @@
 using eCommerce.Domain.Models;
 using eCommerce.Infrastructure.Context;
 using eCommerce.Infrastructure.Repository.Interfaces;
-using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
@@ -13,12 +12,12 @@ namespace eCommerce.Infrastructure.Repository
     public class ProductRepository : IProductRepository
     {
         private eCommerceContext _context;
-        private IDbConnection _connection;
+        private readonly IDbConnection _connection;
 
-        public ProductRepository(eCommerceContext context)
+        public ProductRepository(eCommerceContext context, IConfiguration configuration)
         {
             _context = context;
-            _connection = new SqlConnection(@"Data Source=DARTAGNAN\SQLEXPRESS;Initial Catalog=eCommerceDb;Integrated Security=True");
+            _connection = _connection.AddConnection(configuration);
         }
 
         public async Task<IEnumerable<Product>> GetProducts()
