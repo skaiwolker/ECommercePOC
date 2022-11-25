@@ -8,7 +8,7 @@ namespace eCommerce.Domain.Enums
 {
     public class ProductEnum
     {
-        enum Department
+        public enum Department
         {
             Eletronics = 1,
             Computers = 2,

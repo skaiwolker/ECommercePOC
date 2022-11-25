@@ -1,11 +1,11 @@
 ﻿using eCommerce.Domain.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace eCommerce.Infrastructure.Context
+namespace eCommerce.Repository.Context
 {
     public class eCommerceContext : DbContext
     {
-        public eCommerceContext(DbContextOptions<eCommerceContext> options) : base (options)
+        public eCommerceContext(DbContextOptions<eCommerceContext> options) : base(options)
         {
         }
 
@@ -20,6 +20,8 @@ namespace eCommerce.Infrastructure.Context
         public DbSet<Product> Products { get; set; }
 
         public DbSet<OrderProduct> OrderProducts { get; set; }
+
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -42,6 +44,9 @@ namespace eCommerce.Infrastructure.Context
             builder.Entity<OrderProduct>().HasOne(orderProduct => orderProduct.Product)
                 .WithMany(product => product.OrderProducts)
                 .HasForeignKey(orderProduct => orderProduct.ProductId);
+
+            builder.Entity<User>().HasOne(user => user.Role)
+                .WithMany(role => role.Users).HasForeignKey(user => user.RoleId);
         }
     }
 }

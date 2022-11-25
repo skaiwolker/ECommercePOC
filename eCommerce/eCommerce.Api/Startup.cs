@@ -5,12 +5,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System;
-using eCommerce.Infrastructure.Context;
 using Microsoft.EntityFrameworkCore;
-using eCommerce.Infrastructure.Repository;
 using eCommerce.Services.Services;
 using eCommerce.Services.Services.Interfaces;
-using eCommerce.Infrastructure.Repository.Interfaces;
+using eCommerce.Repository.Context;
+using eCommerce.Repository;
+using eCommerce.Repository.Interfaces;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using System.Collections.Generic;
+using Microsoft.Extensions.Options;
 
 namespace eCommerce.Api
 {
@@ -27,6 +32,19 @@ namespace eCommerce.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<eCommerceContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        ValidateIssuer = false,
+                        ValidateAudience = false,
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
+                    };
+                });
+
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IClientService, ClientService>();
@@ -39,12 +57,40 @@ namespace eCommerce.Api
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IOrderProductService, OrderProductService>();
             services.AddScoped<IOrderProductRepository, OrderProductRepository>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IUserRepository, UserRepository>();
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "eCommerce.Api", Version = "v1" });
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    In = ParameterLocation.Header,
+                    Name = "Authorization",
+                    Description = "Bearer Authentication with JWT Token",
+                    Type = SecuritySchemeType.Http,
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Id = "Bearer",
+                                Type = ReferenceType.SecurityScheme
+                            }
+                        },
+                        new List<string>()
+                    }
+                });
             });
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,6 +106,8 @@ namespace eCommerce.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

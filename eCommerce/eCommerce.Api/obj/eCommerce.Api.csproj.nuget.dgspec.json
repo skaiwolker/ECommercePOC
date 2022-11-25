@@ -55,6 +55,10 @@
               "target": "Package",
               "version": "[12.0.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -73,9 +77,17 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.25.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[5.6.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.25.0, )"
             }
           },
           "imports": [
@@ -84,7 +96,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -96,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -144,6 +157,10 @@
               "target": "Package",
               "version": "[12.0.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -161,6 +178,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.25.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.25.0, )"
             }
           },
           "imports": [
@@ -169,7 +194,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -178,16 +204,16 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Infrastructure.csproj": {
+    "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Infrastructure.csproj",
-        "projectName": "eCommerce.Infrastructure",
-        "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Infrastructure.csproj",
+        "projectUniqueName": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Repository.csproj",
+        "projectName": "eCommerce.Repository",
+        "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Repository.csproj",
         "packagesPath": "C:\\Users\\dartagnanl\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\obj\\",
         "projectStyle": "PackageReference",
@@ -234,6 +260,10 @@
               "target": "Package",
               "version": "[2.0.123, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -251,6 +281,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.25.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.25.0, )"
             }
           },
           "imports": [
@@ -259,7 +297,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -268,7 +307,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     },
@@ -299,8 +338,8 @@
               "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj": {
                 "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj"
               },
-              "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Infrastructure.csproj": {
-                "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Infrastructure.csproj"
+              "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Repository.csproj": {
+                "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Repository.csproj"
               }
             }
           }
@@ -323,6 +362,10 @@
               "target": "Package",
               "version": "[12.0.0, )"
             },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -340,6 +383,14 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.25.0, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.25.0, )"
             }
           },
           "imports": [
@@ -348,7 +399,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -357,7 +409,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.411\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
         }
       }
     }

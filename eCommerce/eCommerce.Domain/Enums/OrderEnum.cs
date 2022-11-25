@@ -8,7 +8,7 @@ namespace eCommerce.Domain.Enums
 {
     public class OrderEnum
     {
-        enum Status
+        public enum Status
         {
             Draft = 1,
             Pending = 2,

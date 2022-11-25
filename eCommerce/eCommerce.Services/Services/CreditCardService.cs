@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
-using eCommerce.Infrastructure.Repository.Interfaces;
+using eCommerce.Repository.Interfaces;
 using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
 using System;

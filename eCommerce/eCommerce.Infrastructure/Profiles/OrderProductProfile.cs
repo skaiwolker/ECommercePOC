@@ -2,9 +2,9 @@
 using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
 
-namespace eCommerce.Infrastructure.Profiles
+namespace eCommerce.Repository.Profiles
 {
-    public class OrderProductProfile: Profile
+    public class OrderProductProfile : Profile
     {
         public OrderProductProfile()
         {

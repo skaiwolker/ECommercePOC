@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using System.Data;
 
-namespace eCommerce.Infrastructure.Context
+namespace eCommerce.Repository.Context
 {
     public static class Connection
     {
