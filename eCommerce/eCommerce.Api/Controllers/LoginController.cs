@@ -1,10 +1,15 @@
 ﻿using eCommerce.Domain.DTOs;
+using eCommerce.Domain.Models;
 using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace eCommerce.Api.Controllers
@@ -26,8 +31,24 @@ namespace eCommerce.Api.Controllers
         {
             try
             {
-                string result = await _userService.Login(loginDTO);
-                return Ok(result);
+                var user = await _userService.Login(loginDTO);
+
+                var claims = new List<Claim>
+                {
+                new Claim(ClaimTypes.NameIdentifier, user.Username),
+                new Claim(ClaimTypes.Email, user.Email),
+                new Claim(ClaimTypes.GivenName, user.FirstName),
+                new Claim(ClaimTypes.Surname, user.LastName),
+                new Claim(ClaimTypes.Role, user.Role.Name)
+                };
+
+                var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+                var token = _userService.GenerateToken(claimIdentity);
+
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
+
+                return Ok(token);
             }
             catch (eCommerceException ex)
             {
@@ -44,5 +65,7 @@ namespace eCommerce.Api.Controllers
                 });
             }
         }
+
+
     }
 }

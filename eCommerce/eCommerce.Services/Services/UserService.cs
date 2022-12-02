@@ -5,6 +5,9 @@ using eCommerce.Domain.Models;
 using eCommerce.Repository.Interfaces;
 using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -24,6 +27,7 @@ namespace eCommerce.Services.Services
         private IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private IConfiguration _configuration;
+        //private HttpContext _context;
 
         public UserService(IMapper mapper, IUserRepository userRepository, IConfiguration configuration)
         {
@@ -126,7 +130,7 @@ namespace eCommerce.Services.Services
             throw new eCommerceException("User Not Found", HttpStatusCode.NotFound);
         }
 
-        public async Task<string> Login(LoginDTO loginDTO)
+        public async Task<UserDTO> Login(LoginDTO loginDTO)
         {
             var passwordLogin = PasswordCryptography(loginDTO.Password);
 
@@ -134,35 +138,29 @@ namespace eCommerce.Services.Services
 
             if (user != null)
             {
-                user.Role = await _userRepository.GetUserRole(user.RoleId);
+                if (user.Active == 0) throw new eCommerceException("User deactivated", HttpStatusCode.BadRequest);
 
-                return GenerateToken(user); 
+                return _mapper.Map<UserDTO>(user);
             }
 
             throw new eCommerceException("Not valid information");
         }
 
-        public string GenerateToken(User user)
+        public string GenerateToken(ClaimsIdentity claimsIdentity)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new Claim[]
-                {
-                    new Claim(ClaimTypes.NameIdentifier, user.Username),
-                    new Claim(ClaimTypes.Email, user.Email),
-                    new Claim(ClaimTypes.GivenName, user.FirstName),
-                    new Claim(ClaimTypes.Surname, user.LastName),
-                    new Claim(ClaimTypes.Role, user.Role.Name)
-                }),
+                Subject = new ClaimsIdentity(claimsIdentity),
                 Expires = DateTime.UtcNow.AddHours(2),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 
             var token = tokenHandler.CreateToken(tokenDescriptor);
             return tokenHandler.WriteToken(token);
+
         }
 
         public string PasswordCryptography(string password)

@@ -20,7 +20,5 @@ namespace eCommerce.Repository.Interfaces
         Task RemoveUser(User user);
 
         Task<User> AuthenticateUser(string username, string password);
-
-        Task<Role> GetUserRole(int id);
     }
 }

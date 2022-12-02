@@ -65,46 +65,20 @@ namespace eCommerce.Repository
                 Password = password
             };
 
-            //var queryUser = @"SELECT * FROM Users 
-            //    WHERE Username = @username
-            //    AND Password = @password";
+            var query = @"SELECT * FROM Users u
+                        LEFT JOIN Role r ON u.RoleId = r.Id
+                        WHERE Username = @username
+                        AND Password = @password";
 
-            //var queryRole = @"SELECT * FROM Role r
-            //            WHERE r.Id = @Id";
-
-            var query = @"
-                SELECT * FROM Users 
-                WHERE Username = @username
-                AND Password = @password
-            ";
-
-
-
-            //var result = await _connection.QueryMultipleAsync(query, param);
-
-            //var client = result.ReadFirstOrDefaultAsync<Client>();
-
-          //  client.Result.Addresses = result.ReadAsync<Address>()?.Result?.ToList();
-
-            //return client.Result;
-            return await _connection.QueryFirstOrDefaultAsync<User>(query, param);
-        }
-
-        public async Task<Role> GetUserRole(int id)
-        {
-            var param = new
+            var result = await _connection.QueryAsync<User, Role, User>(query, (user, role) =>
             {
-                Id = id
-            };
+                user.Role = role;
+                return user;
+            }, param);
 
-            var query = @"
-                SELECT * FROM Role 
-                WHERE Id = @Id
-            ";
-
-            return await _connection.QueryFirstOrDefaultAsync<Role>(query, param);
-
+            return result.FirstOrDefault();
         }
+
 
     }
 }

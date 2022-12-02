@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,6 +20,8 @@ namespace eCommerce.Services.Services.Interfaces
 
         Task<bool> RemoveUser(int id);
 
-        Task<string> Login(LoginDTO loginDTO);
+        Task<UserDTO> Login(LoginDTO loginDTO);
+
+        string GenerateToken(ClaimsIdentity claimsIdentity);
     }
 }

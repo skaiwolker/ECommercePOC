@@ -4,7 +4,9 @@ C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\bin\Debug\
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\bin\Debug\net5.0\eCommerce.Services.dll
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\bin\Debug\net5.0\eCommerce.Services.pdb
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\bin\Debug\net5.0\eCommerce.Domain.dll
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\bin\Debug\net5.0\eCommerce.Repository.dll
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\bin\Debug\net5.0\eCommerce.Domain.pdb
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\bin\Debug\net5.0\eCommerce.Repository.pdb
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\eCommerce.Services.csproj.AssemblyReference.cache
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\eCommerce.Services.GeneratedMSBuildEditorConfig.editorconfig
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\eCommerce.Services.AssemblyInfoInputs.cache
@@ -12,9 +14,7 @@ C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\eCommerce.Services.csproj.CoreCompileInputs.cache
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\eCommerce.Services.csproj.CopyComplete
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\eCommerce.Services.dll
-C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\ref\eCommerce.Services.dll
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\refint\eCommerce.Services.dll
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\eCommerce.Services.pdb
 C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\eCommerce.Services.genruntimeconfig.cache
-C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\refint\eCommerce.Services.dll
-C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\bin\Debug\net5.0\eCommerce.Repository.dll
-C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\bin\Debug\net5.0\eCommerce.Repository.pdb
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Services\obj\Debug\net5.0\ref\eCommerce.Services.dll
