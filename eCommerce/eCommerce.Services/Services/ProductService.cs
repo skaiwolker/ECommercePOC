@@ -98,7 +98,6 @@ namespace eCommerce.Services.Services
             product.Name = productDTO.Name;
             product.Description = productDTO.Description;
             product.Department = productDTO.Department;
-            product.Seller = productDTO.Seller;
             product.Amount = productDTO.Amount;
             product.Price = productDTO.Price;
 

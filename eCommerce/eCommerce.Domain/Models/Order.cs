@@ -10,11 +10,10 @@ namespace eCommerce.Domain.Models
 
         public int Status { get; set; }
 
-        public virtual Client Client { get; set; }
+        public virtual User User { get; set; }
 
-        public int ClientId { get; set; }
+        public int UserId { get; set; }
 
-        [JsonIgnore]
         public virtual List<OrderProduct> OrderProducts { get; set; }
     }
 }

@@ -4,10 +4,12 @@ using eCommerce.Domain.Enums;
 using eCommerce.Domain.Models;
 using eCommerce.Repository.Interfaces;
 using eCommerce.Services.Exceptions;
+using eCommerce.Services.Extensions;
 using eCommerce.Services.Services.Interfaces;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
@@ -27,13 +29,14 @@ namespace eCommerce.Services.Services
         private IUserRepository _userRepository;
         private readonly IMapper _mapper;
         private IConfiguration _configuration;
-        //private HttpContext _context;
+        private IDistributedCache _cache;
 
-        public UserService(IMapper mapper, IUserRepository userRepository, IConfiguration configuration)
+        public UserService(IMapper mapper, IUserRepository userRepository, IConfiguration configuration, IDistributedCache cache)
         {
             _userRepository = userRepository;
             _mapper = mapper;
             _configuration = configuration;
+            _cache = cache;
         }
 
         public async Task AddUser(UserDTO userDTO)
@@ -65,8 +68,19 @@ namespace eCommerce.Services.Services
 
         public async Task<IEnumerable<UserDTO>> GetUsers()
         {
+            var users = await _cache.GetRecordAsync<IEnumerable<UserDTO>>("GetUsers");
+
+            if (users is not null)
+            {
+                return users;
+            }
+
             var result = await _userRepository.GetUsers();
-            return _mapper.Map<IEnumerable<UserDTO>>(result);
+
+            var map = _mapper.Map<IEnumerable<UserDTO>>(result);
+
+            await _cache.SetRecordAsync<IEnumerable<UserDTO>>("GetUsers", map, TimeSpan.FromMinutes(5));
+            return map;
         }
 
         public async Task<UserDTO> GetUserById(int id)

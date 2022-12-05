@@ -11,8 +11,6 @@ namespace eCommerce.Repository.Context
 
         public DbSet<Address> Addresses { get; set; }
 
-        public DbSet<Client> Clients { get; set; }
-
         public DbSet<CreditCard> CreditCards { get; set; }
 
         public DbSet<Order> Orders { get; set; }
@@ -25,17 +23,17 @@ namespace eCommerce.Repository.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Address>().HasOne(address => address.Client)
-                .WithMany(client => client.Addresses)
-                .HasForeignKey(address => address.ClientId);
+            builder.Entity<Address>().HasOne(address => address.User)
+                .WithMany(user => user.Addresses)
+                .HasForeignKey(address => address.UserId);
 
-            builder.Entity<CreditCard>().HasOne(creditCard => creditCard.Client)
-                .WithMany(client => client.CreditCards)
-                .HasForeignKey(creditCard => creditCard.ClientId);
+            builder.Entity<CreditCard>().HasOne(creditCard => creditCard.User)
+                .WithMany(user => user.CreditCards)
+                .HasForeignKey(creditCard => creditCard.UserId);
 
-            builder.Entity<Order>().HasOne(order => order.Client)
-                .WithMany(client => client.Orders)
-                .HasForeignKey(order => order.ClientId);
+            builder.Entity<Order>().HasOne(order => order.User)
+                .WithMany(user => user.Orders)
+                .HasForeignKey(order => order.UserId);
 
             builder.Entity<OrderProduct>().HasOne(orderProduct => orderProduct.Order)
                 .WithMany(order => order.OrderProducts)

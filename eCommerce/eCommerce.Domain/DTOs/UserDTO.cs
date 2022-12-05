@@ -10,7 +10,7 @@ namespace eCommerce.Domain.DTOs
     public class UserDTO
     {
         public int Id { get; set; }
-        
+
         public string Username { get; set; }
 
         public string Password { get; set; }
@@ -26,6 +26,14 @@ namespace eCommerce.Domain.DTOs
         public int RoleId { get; set; }
 
         public int Active { get; set; }
+
+        public List<Address> Addresses { get; set; }
+
+        public List<CreditCard> CreditCards { get; set; }
+
+        public List<Order> Orders { get; set; }
+
+        public List<Product> Products { get; set; }
 
     }
 }

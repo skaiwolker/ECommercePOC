@@ -9,9 +9,9 @@ namespace eCommerce.Domain.DTOs
 
         public int Status { get; set; }
 
-        public Client Client { get; set; }
+        public User User { get; set; }
 
-        public int ClientId { get; set; }
+        public int UserId { get; set; }
 
         public List<OrderProduct> OrderProducts { get; set; }
     }

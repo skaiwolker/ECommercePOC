@@ -49,7 +49,7 @@ namespace eCommerce.Repository
 
         public async Task RemoveCreditCard(CreditCard creditCard)
         {
-            _context.Remove(creditCard);
+            _context.Update(creditCard);
             await _context.SaveChangesAsync();
         }
     }

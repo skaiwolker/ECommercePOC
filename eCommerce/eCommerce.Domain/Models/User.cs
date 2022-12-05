@@ -25,5 +25,13 @@ namespace eCommerce.Domain.Models
         public int RoleId { get; set; }
 
         public int Active { get; set; }
+
+        public virtual List<Address> Addresses { get; set; }
+
+        public virtual List<CreditCard> CreditCards { get; set; }
+
+        public virtual List<Order> Orders { get; set; }
+
+        public virtual List<Product> Products { get; set; }
     }
 }

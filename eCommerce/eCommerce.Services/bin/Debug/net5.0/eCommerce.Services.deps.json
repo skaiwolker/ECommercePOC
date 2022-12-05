@@ -15,6 +15,7 @@
           "Microsoft.EntityFrameworkCore.Proxies": "5.0.17",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.17",
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "6.0.11",
           "Microsoft.IdentityModel.Tokens": "6.25.0",
           "StackExchange.Redis": "2.6.80",
           "System.IdentityModel.Tokens.Jwt": "6.25.0",
@@ -286,18 +287,37 @@
           "Microsoft.EntityFrameworkCore.Design": "5.0.17"
         }
       },
-      "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
+      "Microsoft.Extensions.Caching.Abstractions/6.0.0": {
         "dependencies": {
           "Microsoft.Extensions.Primitives": "6.0.0"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.dll": {
+            "assemblyVersion": "6.0.0.0",
+            "fileVersion": "6.0.21.52210"
+          }
         }
       },
       "Microsoft.Extensions.Caching.Memory/5.0.0": {
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
           "Microsoft.Extensions.Logging.Abstractions": "5.0.0",
           "Microsoft.Extensions.Options": "6.0.0",
           "Microsoft.Extensions.Primitives": "6.0.0"
+        }
+      },
+      "Microsoft.Extensions.Caching.StackExchangeRedis/6.0.11": {
+        "dependencies": {
+          "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
+          "Microsoft.Extensions.Options": "6.0.0",
+          "StackExchange.Redis": "2.6.80"
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.Extensions.Caching.StackExchangeRedis.dll": {
+            "assemblyVersion": "6.0.11.0",
+            "fileVersion": "6.0.1122.52304"
+          }
         }
       },
       "Microsoft.Extensions.Configuration.Abstractions/5.0.0": {
@@ -339,7 +359,7 @@
       },
       "Microsoft.Extensions.Identity.Stores/5.0.17": {
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "5.0.0",
+          "Microsoft.Extensions.Caching.Abstractions": "6.0.0",
           "Microsoft.Extensions.Identity.Core": "5.0.17",
           "Microsoft.Extensions.Logging": "5.0.0"
         },
@@ -1476,6 +1496,7 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.17",
           "Microsoft.EntityFrameworkCore.Proxies": "5.0.17",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "6.0.11",
           "Microsoft.IdentityModel.Tokens": "6.25.0",
           "StackExchange.Redis": "2.6.80",
           "System.IdentityModel.Tokens.Jwt": "6.25.0"
@@ -1493,6 +1514,7 @@
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.17",
           "Microsoft.EntityFrameworkCore.Proxies": "5.0.17",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.17",
+          "Microsoft.Extensions.Caching.StackExchangeRedis": "6.0.11",
           "Microsoft.IdentityModel.Tokens": "6.25.0",
           "StackExchange.Redis": "2.6.80",
           "System.IdentityModel.Tokens.Jwt": "6.25.0",
@@ -1650,12 +1672,12 @@
       "path": "microsoft.entityframeworkcore.tools/5.0.17",
       "hashPath": "microsoft.entityframeworkcore.tools.5.0.17.nupkg.sha512"
     },
-    "Microsoft.Extensions.Caching.Abstractions/5.0.0": {
+    "Microsoft.Extensions.Caching.Abstractions/6.0.0": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-bu8As90/SBAouMZ6fJ+qRNo1X+KgHGrVueFhhYi+E5WqEhcnp2HoWRFnMzXQ6g4RdZbvPowFerSbKNH4Dtg5yg==",
-      "path": "microsoft.extensions.caching.abstractions/5.0.0",
-      "hashPath": "microsoft.extensions.caching.abstractions.5.0.0.nupkg.sha512"
+      "sha512": "sha512-bcz5sSFJbganH0+YrfvIjJDIcKNW7TL07C4d1eTmXy/wOt52iz4LVogJb6pazs7W0+74j0YpXFErvp++Aq5Bsw==",
+      "path": "microsoft.extensions.caching.abstractions/6.0.0",
+      "hashPath": "microsoft.extensions.caching.abstractions.6.0.0.nupkg.sha512"
     },
     "Microsoft.Extensions.Caching.Memory/5.0.0": {
       "type": "package",
@@ -1663,6 +1685,13 @@
       "sha512": "sha512-/1qPCleFOkJe0O+xmFqCNLFYQZTJz965sVw8CUB/BQgsApBwzAUsL2BUkDvQW+geRUVTXUS9zLa0pBjC2VJ1gA==",
       "path": "microsoft.extensions.caching.memory/5.0.0",
       "hashPath": "microsoft.extensions.caching.memory.5.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Caching.StackExchangeRedis/6.0.11": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-5nVS2cG98gpEbA4jg5V2YZRhuZMH5Cld3P4wPTIBBmdBtrWfG/QsdX4TLDZUUrj89MvfrIUwG5IMEGLb623vxw==",
+      "path": "microsoft.extensions.caching.stackexchangeredis/6.0.11",
+      "hashPath": "microsoft.extensions.caching.stackexchangeredis.6.0.11.nupkg.sha512"
     },
     "Microsoft.Extensions.Configuration.Abstractions/5.0.0": {
       "type": "package",

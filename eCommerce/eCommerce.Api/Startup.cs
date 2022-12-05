@@ -65,8 +65,6 @@ namespace eCommerce.Api
 
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<IAddressRepository, AddressRepository>();
-            services.AddScoped<IClientService, ClientService>();
-            services.AddScoped<IClientRepository, ClientRepository>();
             services.AddScoped<ICreditCardService, CreditCardService>();
             services.AddScoped<ICreditCardRepository, CreditCardRepository>();
             services.AddScoped<IOrderService, OrderService>();

@@ -47,7 +47,7 @@ namespace eCommerce.Repository
 
         public async Task RemoveAddress(Address address)
         {
-            _context.Remove(address);
+            _context.Update(address);
             await _context.SaveChangesAsync();
         }
     }
