@@ -116,12 +116,12 @@ namespace eCommerce.Api.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> RemoveProduct(int id)
+        [HttpPut("deactivate/{id}")]
+        public async Task<ActionResult<bool>> DeactivateProduct(int id)
         {
             try
             {
-                bool result = await _productService.RemoveProduct(id);
+                bool result = await _productService.DeactivateProduct(id);
                 return Ok(result);
             }
             catch (eCommerceException ex)
@@ -139,6 +139,30 @@ namespace eCommerce.Api.Controllers
                 });
             }
 
+        }
+
+        [HttpGet("search/{name}")]
+        public async Task<ActionResult<List<ProductDTO>>> GetProductsByName(string name)
+        {
+            try
+            {
+                var result = await _productService.GetProductsByName(name);
+                return Ok(result);
+            }
+            catch (eCommerceException ex)
+            {
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
+            }
         }
     }
 }

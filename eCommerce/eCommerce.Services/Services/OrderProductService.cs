@@ -41,6 +41,8 @@ namespace eCommerce.Services.Services
                 throw new eCommerceException("Not enough products", HttpStatusCode.BadRequest);
             }
 
+            orderProduct.Delete = 0;
+
             await _orderProductRepository.AddOrderProduct(orderProduct);
             await _productRepository.UpdateProduct(product);
         }
@@ -87,17 +89,20 @@ namespace eCommerce.Services.Services
                 throw new eCommerceException("Not enough products", HttpStatusCode.BadRequest);
             }
 
+            orderProductDTO.Delete = 0;
+
             await _orderProductRepository.UpdateOrderProduct(oldOrderProduct);
             await _productRepository.UpdateProduct(oldOrderProduct.Product);
         }
 
-        public async Task<bool> RemoveOrderProduct(int id)
+        public async Task<bool> DeactivateOrderProduct(int id)
         {
             var orderProduct = _orderProductRepository.GetOrderProductById(id).Result;
 
             if (orderProduct != null)
             {
-                await _orderProductRepository.RemoveOrderProduct(orderProduct);
+                orderProduct.Delete = 1;
+                await _orderProductRepository.DeactivateOrderProduct(orderProduct);
                 return true;
             }
             throw new eCommerceException("OrderProduct Not Found", HttpStatusCode.NotFound);

@@ -51,7 +51,7 @@ namespace eCommerce.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveUser(User user)
+        public async Task DeactivateUser(User user)
         {
             _context.Update(user);
             await _context.SaveChangesAsync();
@@ -66,7 +66,7 @@ namespace eCommerce.Repository
             };
 
             var query = @"SELECT * FROM Users u
-                        LEFT JOIN Role r ON u.RoleId = r.Id
+                        LEFT JOIN Roles r ON u.RoleId = r.Id
                         WHERE Username = @username
                         AND Password = @password";
 
@@ -79,6 +79,20 @@ namespace eCommerce.Repository
             return result.FirstOrDefault();
         }
 
+        public async Task<User> ValidateIfExists(string email, string username)
+        {
+            var param = new
+            {
+                Username = username,
+                Email = email
+            };
 
+            var query = @"SELECT * FROM Users
+                        WHERE Username = @username
+                        OR Email = @email"
+            ;
+
+            return await _connection.QueryFirstOrDefaultAsync<User>(query, param);
+        }
     }
 }

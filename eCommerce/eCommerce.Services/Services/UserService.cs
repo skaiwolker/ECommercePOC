@@ -55,13 +55,19 @@ namespace eCommerce.Services.Services
 
             else if (string.IsNullOrEmpty(userDTO.LastName))
                 throw new eCommerceException("Last Name cannot be null or empty", HttpStatusCode.BadRequest);
-
+            
+            else if (!DateTime.TryParse(userDTO.DateOfBirth.ToString(), out DateTime dateTime))
+                throw new eCommerceException("Date of Birth is not in an accepted format", HttpStatusCode.BadRequest);
 
             var user = _mapper.Map<User>(userDTO);
 
             user.Password = PasswordCryptography(user.Password);
 
-            user.Active = 1;
+            user.Delete = 0;
+
+            var exists = await _userRepository.ValidateIfExists(user.Email, user.Username);
+
+            if (exists is not null) throw new eCommerceException("User already exists", HttpStatusCode.Conflict);
 
             await _userRepository.AddUser(user);
         }
@@ -126,19 +132,19 @@ namespace eCommerce.Services.Services
             user.FirstName = userDTO.FirstName;
             user.LastName = userDTO.LastName;
             user.RoleId = userDTO.RoleId; 
-            user.Active = 1;
+            user.Delete = 0;
 
             await _userRepository.UpdateUser(user);
         }
 
-        public async Task<bool> RemoveUser(int id)
+        public async Task<bool> DeactivateUser(int id)
         {
             var user = _userRepository.GetUserById(id).Result;
 
             if (user != null)
             {
-                user.Active = 0;
-                await _userRepository.RemoveUser(user);
+                user.Delete = 1;
+                await _userRepository.DeactivateUser(user);
                 return true;
             }
             throw new eCommerceException("User Not Found", HttpStatusCode.NotFound);
@@ -152,7 +158,7 @@ namespace eCommerce.Services.Services
 
             if (user != null)
             {
-                if (user.Active == 0) throw new eCommerceException("User deactivated", HttpStatusCode.BadRequest);
+                if (user.Delete == 1) throw new eCommerceException("User deactivated", HttpStatusCode.BadRequest);
 
                 return _mapper.Map<UserDTO>(user);
             }

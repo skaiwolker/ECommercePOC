@@ -14,6 +14,6 @@ namespace eCommerce.Services.Services.Interfaces
 
         Task UpdateCreditCard(CreditCardDTO creditCard);
 
-        Task<bool> RemoveCreditCard(int id);
+        Task<bool> DeactivateCreditCard(int id);
     }
 }

@@ -118,12 +118,12 @@ namespace eCommerce.Api.Controllers
             }
         }
 
-        [HttpPut("disable/{id}")]
-        public async Task<ActionResult<bool>> RemoveUser(int id)
+        [HttpPut("deactivate/{id}")]
+        public async Task<ActionResult<bool>> DeactivateUser(int id)
         {
             try
             {
-                bool result = await _userService.RemoveUser(id);
+                bool result = await _userService.DeactivateUser(id);
                 return Ok(result);
             }
             catch (eCommerceException ex)

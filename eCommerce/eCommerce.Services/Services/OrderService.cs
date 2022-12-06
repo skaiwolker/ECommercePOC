@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using eCommerce.Domain.DTOs;
+using eCommerce.Domain.Enums;
 using eCommerce.Domain.Models;
 using eCommerce.Repository.Interfaces;
 using eCommerce.Services.Exceptions;
@@ -30,6 +31,9 @@ namespace eCommerce.Services.Services
             }
 
             var order = _mapper.Map<Order>(orderDTO);
+
+            order.Delete = 0;
+
             await _orderRepository.AddOrder(order);
         }
 
@@ -58,6 +62,8 @@ namespace eCommerce.Services.Services
                 throw new eCommerceException("Status cannot be less or equal 0", HttpStatusCode.BadRequest);
             }
 
+            orderDTO.Delete = 0;
+
             var order = await _orderRepository.GetOrderById(orderDTO.Id);
 
             if (order == null)
@@ -65,20 +71,21 @@ namespace eCommerce.Services.Services
                 throw new eCommerceException("Order Not Found", HttpStatusCode.NotFound);
             }
 
-            //order = _mapper.Map<Order>(orderDTO);
-
             order.Status = orderDTO.Status;
+            order.Delete = 0;
 
             await _orderRepository.UpdateOrder(order);
         }
 
-        public async Task<bool> RemoveOrder(int id)
+        public async Task<bool> DeactivateOrder(int id)
         {
             var order = _orderRepository.GetOrderById(id).Result;
 
             if (order != null)
             {
-                await _orderRepository.RemoveOrder(order);
+                order.Delete = 1;
+                order.Status = (int)OrderEnum.Status.Cancelled;
+                await _orderRepository.DeactivateOrder(order);
                 return true;
             }
             throw new eCommerceException("Order Not Found", HttpStatusCode.NotFound);

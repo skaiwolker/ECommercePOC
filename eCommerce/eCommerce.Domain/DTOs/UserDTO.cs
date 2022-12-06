@@ -21,11 +21,11 @@ namespace eCommerce.Domain.DTOs
 
         public string LastName { get; set; }
 
+        public DateTime DateOfBirth { get; set; }
+
         public Role Role { get; set; }
 
         public int RoleId { get; set; }
-
-        public int Active { get; set; }
 
         public List<Address> Addresses { get; set; }
 

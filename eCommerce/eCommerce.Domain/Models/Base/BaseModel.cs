@@ -8,18 +8,15 @@ namespace eCommerce.Domain.Models.Base
 {
     public class BaseModel
     {
-        public int Active { get; set; }
-
         public int Delete { get; set; }
 
-        public DateOnly CreatedOn { get; set; }
+        public DateTime CreatedOn { get; set; }
 
         public BaseModel()
         {
-            Active = 1;
             Delete = 0;
 
-            CreatedOn =;
+            CreatedOn = DateTime.Today;
         }
 
     }

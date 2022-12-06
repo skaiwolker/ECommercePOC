@@ -1,10 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using eCommerce.Domain.Models.Base;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 
 namespace eCommerce.Domain.Models
 {
-    public class Order
+    public class Order : BaseModel
     {
         public int Id { get; set; }
 

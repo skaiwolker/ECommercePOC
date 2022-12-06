@@ -14,6 +14,6 @@ namespace eCommerce.Repository.Interfaces
 
         Task UpdateOrder(Order order);
 
-        Task RemoveOrder(Order order);
+        Task DeactivateOrder(Order order);
     }
 }

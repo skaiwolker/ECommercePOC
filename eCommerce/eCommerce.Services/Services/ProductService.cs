@@ -42,6 +42,9 @@ namespace eCommerce.Services.Services
             }
 
             var product = _mapper.Map<Product>(productDTO);
+
+            product.Delete = 0;
+
             await _productRepository.AddProduct(product);
         }
 
@@ -100,21 +103,33 @@ namespace eCommerce.Services.Services
             product.Department = productDTO.Department;
             product.Amount = productDTO.Amount;
             product.Price = productDTO.Price;
+            product.Delete = 0;
 
             await _productRepository.UpdateProduct(product);
 
         }
 
-        public async Task<bool> RemoveProduct(int id)
+        public async Task<bool> DeactivateProduct(int id)
         {
-            var product = _productRepository.GetProductById(id).Result;
+            var product =  await _productRepository.GetProductById(id);
 
             if (product != null)
             {
-                await _productRepository.RemoveProduct(product);
+                product.Delete = 1;
+                await _productRepository.DeactivateProduct(product);
                 return true;
             }
             throw new eCommerceException("Product Not Found", HttpStatusCode.NotFound);
+        }
+
+        public async Task<IEnumerable<ProductDTO>> GetProductsByName(string name)
+        {
+            var products = await _productRepository.GetProductsByName(name);
+
+            if (products is null) throw new eCommerceException("No results for " + name, HttpStatusCode.NotFound);
+
+            return _mapper.Map<IEnumerable<ProductDTO>>(products);
+
         }
     }
 }

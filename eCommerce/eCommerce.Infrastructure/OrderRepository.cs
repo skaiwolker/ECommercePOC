@@ -47,7 +47,7 @@ namespace eCommerce.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveOrder(Order order)
+        public async Task DeactivateOrder(Order order)
         {
             _context.Remove(order);
             await _context.SaveChangesAsync();

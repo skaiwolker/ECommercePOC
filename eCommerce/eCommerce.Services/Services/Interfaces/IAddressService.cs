@@ -15,6 +15,6 @@ namespace eCommerce.Services.Services.Interfaces
 
         Task UpdateAddress(AddressDTO address);
 
-        Task<bool> RemoveAddress(int id);
+        Task<bool> DeactivateAddress(int id);
     }
 }

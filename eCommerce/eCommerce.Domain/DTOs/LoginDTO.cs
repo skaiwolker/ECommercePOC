@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eCommerce.Domain.DTOs.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

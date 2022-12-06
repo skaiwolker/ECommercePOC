@@ -5,6 +5,7 @@ using eCommerce.Repository.Interfaces;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace eCommerce.Repository
@@ -30,7 +31,14 @@ namespace eCommerce.Repository
         {
             //return await _context.Products.FirstOrDefaultAsync(product => product.Id == id);
             var param = new { Id = id };
-            return await _connection.QueryFirstOrDefaultAsync<Product>("SELECT * FROM Products WHERE Id = @Id", param);
+
+            var query = @"SELECT * FROM Products p 
+                          WHERE p.Id = @Id"
+            ;
+
+            var result = await _connection.QueryAsync<Product>(query, param);
+
+            return result.FirstOrDefault();
         }
 
         public async Task AddProduct(Product product)
@@ -45,10 +53,27 @@ namespace eCommerce.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveProduct(Product product)
+        public async Task DeactivateProduct(Product product)
         {
             _context.Remove(product);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<Product>> GetProductsByName(string name)
+        {
+
+            var param = new
+            {
+                Name = name
+            };
+
+            var query = @"SELECT * FROM Products 
+                          WHERE Name LIKE '%@Name%'
+                          OR Description LIKE '%@Name%'";
+
+            var result = await _connection.QueryAsync<Product>(query, param);
+
+            return result;
         }
     }
 }

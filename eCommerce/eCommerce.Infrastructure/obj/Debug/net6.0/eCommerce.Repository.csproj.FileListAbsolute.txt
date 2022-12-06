@@ -1,0 +1,17 @@
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net6.0\eCommerce.Repository.deps.json
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net6.0\eCommerce.Repository.runtimeconfig.json
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net6.0\eCommerce.Repository.dll
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net6.0\eCommerce.Repository.pdb
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net6.0\eCommerce.Domain.dll
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\bin\Debug\net6.0\eCommerce.Domain.pdb
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net6.0\eCommerce.Repository.csproj.AssemblyReference.cache
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net6.0\eCommerce.Repository.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net6.0\eCommerce.Repository.AssemblyInfoInputs.cache
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net6.0\eCommerce.Repository.AssemblyInfo.cs
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net6.0\eCommerce.Repository.csproj.CoreCompileInputs.cache
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net6.0\eCommerce.Repository.csproj.CopyComplete
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net6.0\eCommerce.Repository.dll
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net6.0\refint\eCommerce.Repository.dll
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net6.0\eCommerce.Repository.pdb
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net6.0\eCommerce.Repository.genruntimeconfig.cache
+C:\Users\dartagnanl\Documents\GitHub\POC\eCommerce\eCommerce.Infrastructure\obj\Debug\net6.0\ref\eCommerce.Repository.dll

@@ -42,6 +42,9 @@ namespace eCommerce.Services.Services
             }
 
             var creditCard = _mapper.Map<CreditCard>(creditCardDTO);
+
+            creditCard.Delete = 0;
+
             await _creditCardRepository.AddCreditCard(creditCard);
         }
 
@@ -95,18 +98,19 @@ namespace eCommerce.Services.Services
             creditCard.Number = creditCardDTO.Number;
             creditCard.ExpirationDate = creditCardDTO.ExpirationDate;
             creditCard.SecurityCode = creditCardDTO.SecurityCode;
-
+            creditCard.Delete = 0;
 
             await _creditCardRepository.UpdateCreditCard(creditCard);
         }
 
-        public async Task<bool> RemoveCreditCard(int id)
+        public async Task<bool> DeactivateCreditCard(int id)
         {
             var creditCard = _creditCardRepository.GetCreditCardById(id).Result;
 
             if (creditCard != null)
             {
-                await _creditCardRepository.RemoveCreditCard(creditCard);
+                creditCard.Delete = 1;
+                await _creditCardRepository.DeactivateCreditCard(creditCard);
                 return true;
             }
             throw new eCommerceException("Credit Card Not Found", HttpStatusCode.NotFound);

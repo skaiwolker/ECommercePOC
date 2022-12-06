@@ -14,6 +14,6 @@ namespace eCommerce.Repository.Interfaces
 
         Task UpdateAddress(Address address);
 
-        Task RemoveAddress(Address address);
+        Task DeactivateAddress(Address address);
     }
 }

@@ -1,6 +1,8 @@
-﻿namespace eCommerce.Domain.Models
+﻿using eCommerce.Domain.Models.Base;
+
+namespace eCommerce.Domain.Models
 {
-    public class Address : DefaultInfos
+    public class Address : BaseModel
     {
         public int Id { get; set; }
 

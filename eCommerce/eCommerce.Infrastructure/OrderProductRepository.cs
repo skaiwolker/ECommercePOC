@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace eCommerce.Repository
@@ -32,7 +33,24 @@ namespace eCommerce.Repository
         {
             //return await _context.OrderProducts.Include(orderProduct => orderProduct.Product).Include(orderProduct => orderProduct.Order).ThenInclude(order => order.Client).FirstOrDefaultAsync(orderProduct => orderProduct.Id == id);
             var param = new { Id = id };
-            return await _connection.QueryFirstOrDefaultAsync<OrderProduct>("SELECT * FROM OrderProducts WHERE Id = @Id", param);
+
+
+            var query = @"SELECT * FROM OrderProducts op
+                          LEFT JOIN Orders o ON op.OrderId = o.Id
+                          LEFT JOIN Products p ON op.ProductId = p.Id
+                          WHERE op.Id = @Id";
+
+            var result = await _connection.QueryAsync<OrderProduct, Order, Product, OrderProduct>(query, (orderProduct, order, product) =>
+            {
+                orderProduct.Order = order;
+                orderProduct.Product = product;
+
+                return orderProduct;
+
+            }, param);
+
+
+            return result.FirstOrDefault();
         }
 
         public async Task AddOrderProduct(OrderProduct orderProduct)
@@ -47,7 +65,7 @@ namespace eCommerce.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveOrderProduct(OrderProduct orderProduct)
+        public async Task DeactivateOrderProduct(OrderProduct orderProduct)
         {
             _context.Remove(orderProduct);
             await _context.SaveChangesAsync();

@@ -14,6 +14,8 @@ namespace eCommerce.Services.Services.Interfaces
 
         Task UpdateProduct(ProductDTO product);
 
-        Task<bool> RemoveProduct(int id);
+        Task<bool> DeactivateProduct(int id);
+
+        Task<IEnumerable<ProductDTO>> GetProductsByName(string name);
     }
 }

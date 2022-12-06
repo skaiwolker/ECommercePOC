@@ -18,10 +18,13 @@ namespace eCommerce.Services.Services.Interfaces
 
         Task UpdateUser(UserDTO user);
 
-        Task<bool> RemoveUser(int id);
+        Task<bool> DeactivateUser(int id);
 
         Task<UserDTO> Login(LoginDTO loginDTO);
 
         string GenerateToken(ClaimsIdentity claimsIdentity);
+
+        string PasswordCryptography(string password);
+        
     }
 }

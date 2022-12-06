@@ -21,6 +21,8 @@ namespace eCommerce.Repository.Context
 
         public DbSet<User> Users { get; set; }
 
+        public DbSet<Role> Roles { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Address>().HasOne(address => address.User)
@@ -45,6 +47,7 @@ namespace eCommerce.Repository.Context
 
             builder.Entity<User>().HasOne(user => user.Role)
                 .WithMany(role => role.Users).HasForeignKey(user => user.RoleId);
+
         }
     }
 }

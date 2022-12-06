@@ -47,7 +47,7 @@ namespace eCommerce.Repository
             await _context.SaveChangesAsync();
         }
 
-        public async Task RemoveCreditCard(CreditCard creditCard)
+        public async Task DeactivateCreditCard(CreditCard creditCard)
         {
             _context.Update(creditCard);
             await _context.SaveChangesAsync();

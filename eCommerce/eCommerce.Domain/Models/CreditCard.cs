@@ -1,8 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using eCommerce.Domain.Models.Base;
+using System.ComponentModel.DataAnnotations;
 
 namespace eCommerce.Domain.Models
 {
-    public class CreditCard
+    public class CreditCard : BaseModel
     {
         public int Id { get; set; }
 

@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using eCommerce.Domain.Models.Base;
+using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace eCommerce.Domain.Models
 {
-    public class Product
+    public class Product : BaseModel
     {
         public int Id { get; set; }
 

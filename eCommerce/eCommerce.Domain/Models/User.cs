@@ -1,4 +1,5 @@
-﻿using System;
+﻿using eCommerce.Domain.Models.Base;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eCommerce.Domain.Models
 {
-    public class User
+    public class User : BaseModel
     {
         public int Id { get; set; }
 
@@ -20,11 +21,11 @@ namespace eCommerce.Domain.Models
 
         public string LastName { get; set; }
 
+        public DateTime DateOfBirth { get; set; }
+
         public virtual Role Role { get; set; }
 
         public int RoleId { get; set; }
-
-        public int Active { get; set; }
 
         public virtual List<Address> Addresses { get; set; }
 

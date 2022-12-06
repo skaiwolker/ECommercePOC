@@ -116,12 +116,12 @@ namespace eCommerce.Api.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> RemoveCreditCard(int id)
+        [HttpPut("deactivate/{id}")]
+        public async Task<ActionResult<bool>> DeactivateCreditCard(int id)
         {
             try
             {
-                bool result = await _creditCardService.RemoveCreditCard(id);
+                bool result = await _creditCardService.DeactivateCreditCard(id);
                 return Ok(result);
             }
             catch (eCommerceException ex)

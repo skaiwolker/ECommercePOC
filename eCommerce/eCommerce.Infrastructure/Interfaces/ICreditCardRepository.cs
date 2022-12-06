@@ -14,6 +14,6 @@ namespace eCommerce.Repository.Interfaces
 
         Task UpdateCreditCard(CreditCard creditCard);
 
-        Task RemoveCreditCard(CreditCard creditCard);
+        Task DeactivateCreditCard(CreditCard creditCard);
     }
 }

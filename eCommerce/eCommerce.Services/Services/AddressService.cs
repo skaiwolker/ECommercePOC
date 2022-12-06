@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
+using eCommerce.Domain.Models.Base;
 using eCommerce.Repository.Interfaces;
 using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
@@ -42,6 +43,9 @@ namespace eCommerce.Services.Services
             }
 
             var address = _mapper.Map<Address>(addressDTO);
+
+            address.Delete = 0;
+
             await _addressRepository.AddAddress(address);
         }
 
@@ -95,17 +99,19 @@ namespace eCommerce.Services.Services
             address.Number = addressDTO.Number;
             address.District = addressDTO.District;
             address.City = addressDTO.City;
+            address.Delete = 0;
 
             await _addressRepository.UpdateAddress(address);
         }
 
-        public async Task<bool> RemoveAddress(int id)
+        public async Task<bool> DeactivateAddress(int id)
         {
             var address = _addressRepository.GetAddressById(id).Result;
 
             if (address != null)
             {
-                await _addressRepository.RemoveAddress(address);
+                address.Delete = 1;
+                await _addressRepository.DeactivateAddress(address);
                 return true;
             }
 

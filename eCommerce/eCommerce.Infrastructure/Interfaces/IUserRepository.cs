@@ -17,8 +17,10 @@ namespace eCommerce.Repository.Interfaces
 
         Task UpdateUser(User user);
 
-        Task RemoveUser(User user);
+        Task DeactivateUser(User user);
 
         Task<User> AuthenticateUser(string username, string password);
+
+        Task<User> ValidateIfExists(string email, string username);
     }
 }

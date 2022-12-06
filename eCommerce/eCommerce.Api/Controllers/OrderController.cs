@@ -116,12 +116,12 @@ namespace eCommerce.Api.Controllers
             }
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<bool>> RemoveOrder(int id)
+        [HttpPut("deactivate/{id}")]
+        public async Task<ActionResult<bool>> DeactivateOrder(int id)
         {
             try
             {
-                bool result = await _orderService.RemoveOrder(id);
+                bool result = await _orderService.DeactivateOrder(id);
                 return Ok(result);
             }
             catch (eCommerceException ex)

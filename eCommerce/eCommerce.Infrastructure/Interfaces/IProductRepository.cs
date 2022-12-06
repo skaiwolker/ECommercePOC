@@ -14,6 +14,8 @@ namespace eCommerce.Repository.Interfaces
 
         Task UpdateProduct(Product product);
 
-        Task RemoveProduct(Product product);
+        Task DeactivateProduct(Product product);
+
+        Task<IEnumerable<Product>> GetProductsByName(string name);
     }
 }

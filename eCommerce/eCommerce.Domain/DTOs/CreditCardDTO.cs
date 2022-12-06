@@ -1,8 +1,9 @@
-﻿using eCommerce.Domain.Models;
+﻿using eCommerce.Domain.DTOs.Base;
+using eCommerce.Domain.Models;
 
 namespace eCommerce.Domain.DTOs
 {
-    public class CreditCardDTO
+    public class CreditCardDTO : BaseDTO
     {
         public int Id { get; set; }
 
