@@ -27,13 +27,13 @@ namespace eCommerce.Domain.DTOs
 
         public int RoleId { get; set; }
 
-        public List<Address> Addresses { get; set; }
+        public List<AddressDTO> Addresses { get; set; }
 
-        public List<CreditCard> CreditCards { get; set; }
+        public List<CreditCardDTO> CreditCards { get; set; }
 
-        public List<Order> Orders { get; set; }
+        public List<OrderDTO> Orders { get; set; }
 
-        public List<Product> Products { get; set; }
+        public List<ProductDTO> Products { get; set; }
 
     }
 }

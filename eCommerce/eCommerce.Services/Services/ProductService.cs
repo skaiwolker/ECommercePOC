@@ -6,6 +6,7 @@ using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -15,14 +16,16 @@ namespace eCommerce.Services.Services
     {
         private IProductRepository _productRepository;
         private readonly IMapper _mapper;
+        private IProductImageService _imageService;
 
-        public ProductService(IMapper mapper, IProductRepository productRepository)
+        public ProductService(IMapper mapper, IProductRepository productRepository, IProductImageService imageService)
         {
             _productRepository = productRepository;
             _mapper = mapper;
+            _imageService = imageService;
         }
 
-        public async Task AddProduct(ProductDTO productDTO)
+        public async Task AddProduct(ProductDTO productDTO, IEnumerable<ProductImageDTO> productImageDTOs)
         {
             if (string.IsNullOrEmpty(productDTO.Name))
             {
@@ -43,9 +46,20 @@ namespace eCommerce.Services.Services
 
             var product = _mapper.Map<Product>(productDTO);
 
-            product.Delete = 0;
+            product.Delete = 0;                    
 
             await _productRepository.AddProduct(product);
+
+            if (productImageDTOs != null)
+            {
+                var getNewProductId = GetProducts().Result.LastOrDefault().Id + 1;
+
+                for (int i = 0; i < productImageDTOs.Count(); i++)
+                {
+                    productImageDTOs.Cast<ProductImageDTO>().ElementAt(i).ProductId = getNewProductId;
+                    await _imageService.AddProductImage(productImageDTOs.Cast<ProductImageDTO>().ElementAt(i));
+                }
+            }
         }
 
         public async Task<IEnumerable<ProductDTO>> GetProducts()

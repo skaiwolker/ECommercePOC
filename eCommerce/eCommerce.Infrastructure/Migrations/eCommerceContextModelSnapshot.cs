@@ -34,7 +34,7 @@ namespace eCommerce.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Delete")
                         .HasColumnType("int");
@@ -67,7 +67,7 @@ namespace eCommerce.Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Delete")
                         .HasColumnType("int");
@@ -103,7 +103,7 @@ namespace eCommerce.Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Delete")
                         .HasColumnType("int");
@@ -133,7 +133,7 @@ namespace eCommerce.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Delete")
                         .HasColumnType("int");
@@ -165,7 +165,7 @@ namespace eCommerce.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Delete")
                         .HasColumnType("int");
@@ -192,6 +192,27 @@ namespace eCommerce.Repository.Migrations
                     b.ToTable("Products");
                 });
 
+            modelBuilder.Entity("eCommerce.Domain.Models.ProductImage", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<byte[]>("Image")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("ProductImages");
+                });
+
             modelBuilder.Entity("eCommerce.Domain.Models.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -201,7 +222,7 @@ namespace eCommerce.Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Delete")
                         .HasColumnType("int");
@@ -223,10 +244,10 @@ namespace eCommerce.Repository.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("Delete")
                         .HasColumnType("int");
@@ -319,6 +340,17 @@ namespace eCommerce.Repository.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("eCommerce.Domain.Models.ProductImage", b =>
+                {
+                    b.HasOne("eCommerce.Domain.Models.Product", "Product")
+                        .WithMany("ProductImages")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("eCommerce.Domain.Models.User", b =>
                 {
                     b.HasOne("eCommerce.Domain.Models.Role", "Role")
@@ -338,6 +370,8 @@ namespace eCommerce.Repository.Migrations
             modelBuilder.Entity("eCommerce.Domain.Models.Product", b =>
                 {
                     b.Navigation("OrderProducts");
+
+                    b.Navigation("ProductImages");
                 });
 
             modelBuilder.Entity("eCommerce.Domain.Models.Role", b =>

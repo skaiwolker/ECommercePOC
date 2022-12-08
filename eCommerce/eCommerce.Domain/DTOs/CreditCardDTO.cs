@@ -15,7 +15,7 @@ namespace eCommerce.Domain.DTOs
 
         public string SecurityCode { get; set; }
 
-        public User User { get; set; }
+        public UserDTO User { get; set; }
 
         public int UserId { get; set; }
     }

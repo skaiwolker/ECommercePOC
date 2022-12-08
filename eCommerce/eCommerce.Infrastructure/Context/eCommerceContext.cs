@@ -23,6 +23,8 @@ namespace eCommerce.Repository.Context
 
         public DbSet<Role> Roles { get; set; }
 
+        public DbSet<ProductImage> ProductImages { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.Entity<Address>().HasOne(address => address.User)
@@ -48,6 +50,9 @@ namespace eCommerce.Repository.Context
             builder.Entity<User>().HasOne(user => user.Role)
                 .WithMany(role => role.Users).HasForeignKey(user => user.RoleId);
 
+            builder.Entity<ProductImage>().HasOne(productImage => productImage.Product)
+                .WithMany(product => product.ProductImages)
+                .HasForeignKey(productImage => productImage.ProductId);
         }
     }
 }

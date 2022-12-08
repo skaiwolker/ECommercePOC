@@ -23,5 +23,7 @@ namespace eCommerce.Domain.Models
         public double Price { get; set; }
 
         public virtual List<OrderProduct> OrderProducts { get; set; }
+
+        public virtual List<ProductImage> ProductImages { get; set; }
     }
 }

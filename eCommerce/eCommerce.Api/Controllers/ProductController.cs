@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace eCommerce.Api.Controllers
@@ -73,7 +74,7 @@ namespace eCommerce.Api.Controllers
         {
             try
             {
-                await _productService.AddProduct(productDTO);
+                await _productService.AddProduct(productDTO, productDTO.ProductImages.AsEnumerable());
                 return Ok(productDTO);
             }
             catch (eCommerceException ex)

@@ -75,6 +75,8 @@ namespace eCommerce.Api
             services.AddScoped<IOrderProductRepository, OrderProductRepository>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IProductImageRepository, ProductImageRepository>();
+            services.AddScoped<IProductImageService, ProductImageService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -119,6 +121,12 @@ namespace eCommerce.Api
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "eCommerce.Api v1"));
             }
 
+            app.UseCors(x => x
+            .WithOrigins("http://localhost:4200")
+            .AllowAnyMethod()
+            .AllowAnyHeader()
+            );
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
@@ -138,6 +146,9 @@ namespace eCommerce.Api
             {
                 endpoints.MapControllers();
             });
+
+            
+
         }
     }
 }

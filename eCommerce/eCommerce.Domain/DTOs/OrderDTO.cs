@@ -10,10 +10,10 @@ namespace eCommerce.Domain.DTOs
 
         public int Status { get; set; }
 
-        public User User { get; set; }
+        public UserDTO User { get; set; }
 
         public int UserId { get; set; }
 
-        public List<OrderProduct> OrderProducts { get; set; }
+        public List<OrderProductDTO> OrderProducts { get; set; }
     }
 }

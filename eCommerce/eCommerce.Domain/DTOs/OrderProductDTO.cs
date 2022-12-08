@@ -9,11 +9,11 @@ namespace eCommerce.Domain.DTOs
 
         public int Amount { get; set; }
 
-        public Order Order { get; set; }
+        public OrderDTO Order { get; set; }
 
         public int OrderId { get; set; }
 
-        public Product Product { get; set; }
+        public ProductDTO Product { get; set; }
 
         public int ProductId { get; set; }
     }
