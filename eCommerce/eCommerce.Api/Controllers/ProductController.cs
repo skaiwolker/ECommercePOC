@@ -1,6 +1,7 @@
 ﻿using eCommerce.Domain.DTOs;
 using eCommerce.Services.Exceptions;
 using eCommerce.Services.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -27,7 +28,7 @@ namespace eCommerce.Api.Controllers
             try
             {
                 var result = await _productService.GetProducts();
-                return Ok(result);
+                return Ok(result.ToList());
             }
             catch (eCommerceException ex)
             {
@@ -70,6 +71,7 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Administrator, Seller")]
         public async Task<ActionResult<ProductDTO>> AddProduct([FromBody] ProductDTO productDTO)
         {
             try

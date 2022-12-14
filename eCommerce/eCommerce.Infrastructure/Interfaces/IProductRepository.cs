@@ -6,7 +6,7 @@ namespace eCommerce.Repository.Interfaces
 {
     public interface IProductRepository
     {
-        Task<IEnumerable<Product>> GetProducts();
+        Task<IEnumerable<Product>> GetProducts();//(IEnumerable<ProductImage> productImages);
 
         Task<Product> GetProductById(int id);
 

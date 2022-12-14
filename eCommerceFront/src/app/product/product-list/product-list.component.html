@@ -1,7 +1,18 @@
-<div class="product-item" *ngFor="let product of products$ | async">
-    <h3>{{ product.name }}</h3>
-    <p>{{ product.description }}</p>
-    <p>{{ product.price }}</p>
-    <p>{{ product.amount }}</p>
-    <p>{{ product.department }}</p>
+<div class="mt-5"></div>
+<br/>
+<div class="container mt-2">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let product of products$ | async">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">{{ product.description }}</li>
+                        <li class="list-group-item">{{ product.department }}</li>
+                        <li class="list-group-item">{{ product.price }}</li>
+                      </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

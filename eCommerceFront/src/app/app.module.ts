@@ -9,6 +9,8 @@ import { HomeModule } from './home/home.module';
 import { HomeComponent } from './home/home.component';
 import { ProductListComponent } from './product/product-list/product-list.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { CoreModule } from './core/core.module';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
   declarations: [
@@ -19,12 +21,9 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({
-
-      maxAge: 25, // Retains last 25 states
-
-    }),
-    HomeModule
+    EffectsModule.forRoot([]),
+    HomeModule,
+    CoreModule    
   ],
   providers: [],
   bootstrap: [AppComponent]

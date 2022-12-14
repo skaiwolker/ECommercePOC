@@ -1,28 +1,22 @@
-import { Component, Input } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { select, Store } from "@ngrx/store";
 import { selectProducts } from "src/app/state-product/product.selector";
-import { getProducts, } from "src/app/state-product/products.actions";
+import { getProducts, getProductsAPI, } from "src/app/state-product/products.actions";
 import { Product } from "../product";
-import { ProductService } from "src/app/service/product.service";
+import { ProductService } from "src/app/product/product.service";
 
 @Component({
     selector: 'product-list',
     templateUrl: './product-list.component.html',
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit{
 
-    constructor(private productService: ProductService, private store: Store) { }
+    constructor(private store: Store) { }
 
     products$ = this.store.pipe(select(selectProducts));
 
 
     ngOnInit() {
-        this.productService
-            .getAll()
-            .subscribe((products: any) => {
-                console.log(products);
-                this.store.dispatch(getProducts({products}))
-            }
-            );
+        this.store.dispatch(getProductsAPI());
     }
 }

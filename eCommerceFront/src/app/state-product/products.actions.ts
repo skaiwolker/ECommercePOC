@@ -7,6 +7,6 @@ export const getProductsAPI = createAction(
 );
 
 export const getProducts = createAction(
-      "[Product] get all",
+      "[Product] get all success",
       props<{ products : Product[]}>(),
 );

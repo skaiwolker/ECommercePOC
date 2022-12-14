@@ -50,21 +50,24 @@ namespace eCommerce.Services.Services
 
             await _productRepository.AddProduct(product);
 
-            if (productImageDTOs != null)
-            {
-                var getNewProductId = GetProducts().Result.LastOrDefault().Id + 1;
+            //if (productImageDTOs != null)
+            //{
+            //    //var getNewProductId = GetProducts().Result.LastOrDefault().Id;
 
-                for (int i = 0; i < productImageDTOs.Count(); i++)
-                {
-                    productImageDTOs.Cast<ProductImageDTO>().ElementAt(i).ProductId = getNewProductId;
-                    await _imageService.AddProductImage(productImageDTOs.Cast<ProductImageDTO>().ElementAt(i));
-                }
-            }
+            //    for (int i = 0; i < productImageDTOs.Count(); i++)
+            //    {
+            //        productImageDTOs.Cast<ProductImageDTO>().ElementAt(i).ProductId = 15;//getNewProductId;
+            //        await _imageService.AddProductImage(productImageDTOs.Cast<ProductImageDTO>().ElementAt(i));
+            //    }
+            //}
         }
 
         public async Task<IEnumerable<ProductDTO>> GetProducts()
         {
-            var result = await _productRepository.GetProducts();
+            //var productImagesDTO = await _imageService.GetProductImages();
+           // var productImages = _mapper.Map<IEnumerable<ProductImage>>(productImagesDTO);
+
+            var result = await _productRepository.GetProducts();//(productImages);
             return _mapper.Map<IEnumerable<ProductDTO>>(result);
         }
 

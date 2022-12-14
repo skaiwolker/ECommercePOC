@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
+using eCommerce.Api.DependencyInjection;
 
 namespace eCommerce.Api
 {
@@ -54,7 +55,6 @@ namespace eCommerce.Api
             {
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
                 options.SlidingExpiration = true;
-               // options.Cookie.Expiration = TimeSpan.FromMinutes(25);
             });
 
             services.AddStackExchangeRedisCache(options =>
@@ -63,20 +63,7 @@ namespace eCommerce.Api
                 options.InstanceName = "eCommerceRedis_";
             });
 
-            services.AddScoped<IAddressService, AddressService>();
-            services.AddScoped<IAddressRepository, AddressRepository>();
-            services.AddScoped<ICreditCardService, CreditCardService>();
-            services.AddScoped<ICreditCardRepository, CreditCardRepository>();
-            services.AddScoped<IOrderService, OrderService>();
-            services.AddScoped<IOrderRepository, OrderRepository>();
-            services.AddScoped<IProductService, ProductService>();
-            services.AddScoped<IProductRepository, ProductRepository>();
-            services.AddScoped<IOrderProductService, OrderProductService>();
-            services.AddScoped<IOrderProductRepository, OrderProductRepository>();
-            services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IProductImageRepository, ProductImageRepository>();
-            services.AddScoped<IProductImageService, ProductImageService>();
+            services.AddDependencyInjection(Configuration);
 
             services.AddControllers();
             services.AddSwaggerGen(c =>

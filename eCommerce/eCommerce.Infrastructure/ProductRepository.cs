@@ -21,10 +21,22 @@ namespace eCommerce.Repository
             _connection = _connection.AddConnection(configuration);
         }
 
-        public async Task<IEnumerable<Product>> GetProducts()
+        public async Task<IEnumerable<Product>> GetProducts()//(IEnumerable<ProductImage> productImages)
         {
             //return await _context.Products.ToListAsync();
-            return await _connection.QueryAsync<Product>("SELECT * FROM Products");
+            var query = @"SELECT * FROM Products p";
+                        //LEFT JOIN ProductImages pi ON pi.ProductId = p.Id";
+
+            //var result = await _connection.QueryAsync<Product, IEnumerable<ProductImage>, Product>(query, (product, image) =>
+            //{
+            //    image = productImages;
+            //    product.ProductImages = image.ToList();
+            //    return product;
+            //});
+
+            var result = await _connection.QueryAsync<Product>(query);
+
+            return result;
         }
 
         public async Task<Product> GetProductById(int id)

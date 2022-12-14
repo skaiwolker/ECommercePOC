@@ -13,8 +13,30 @@ namespace eCommerce.Repository.Profiles
     {
         public ProductImageProfile()
         {
-            CreateMap<ProductImageDTO, ProductImage>();
-            CreateMap<ProductImage, ProductImageDTO>();
+            CreateMap<ProductImage, ProductImageDTO>().ForMember(dto => dto.Image,
+                                                        e => e.MapFrom(o => ConvertToString(o.Image))).ReverseMap().ForMember(o => o.Image,
+                                                        e => e.MapFrom(dto => ConvertToByte(dto.Image)));
+        }
+
+        public string ConvertToString(byte[] image)
+        {
+            var path = Encoding.Default.GetString(image);
+            return path;
+        }
+
+        public byte[] ConvertToByte(string path)
+        {
+            byte[] image;
+
+            //var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+
+            //var reader = new BinaryReader(stream);
+
+            //image = reader.ReadBytes((int)stream.Length);
+
+            image = Encoding.Default.GetBytes(path);
+
+            return image;
         }
     }
 }

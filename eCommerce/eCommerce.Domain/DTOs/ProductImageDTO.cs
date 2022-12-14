@@ -11,7 +11,7 @@ namespace eCommerce.Domain.DTOs
     {
         public int Id { get; set; }
 
-        public string ImagePath { get; set; }
+        public string Image { get; set; }
 
         public virtual ProductDTO Product { get; set; }
 

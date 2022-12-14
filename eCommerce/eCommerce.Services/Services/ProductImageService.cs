@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using eCommerce.Domain.DTOs;
 using eCommerce.Domain.Models;
+using eCommerce.Repository;
 using eCommerce.Repository.Interfaces;
 using eCommerce.Services.Services.Interfaces;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -26,7 +28,7 @@ namespace eCommerce.Services.Services
 
         public async Task AddProductImage(ProductImageDTO productImageDTO)
         {
-            byte[] image = ConvertToByte(productImageDTO.ImagePath);
+            byte[] image = ConvertToByte(productImageDTO.Image);
 
             var productImage = _mapper.Map<ProductImage>(productImageDTO);
 
@@ -35,9 +37,26 @@ namespace eCommerce.Services.Services
             await _productImageRepository.AddProductImage(productImage);
         }
 
-        public Task<IEnumerable<ProductImageDTO>> GetProductImages()
+        public async Task<IEnumerable<ProductImageDTO>> GetProductImages()
         {
-            throw new NotImplementedException();
+            var result = await _productImageRepository.GetProductImages();
+
+            //List<ProductImageDTO> mapped = new List<ProductImageDTO>();
+
+            //for (int i = 0; i < result.Count(); i++)
+            //{
+            //    var productImageDTO = _mapper.Map<ProductImage, ProductImageDTO>(result.Cast<ProductImage>().ElementAt(i), opt =>
+            //    {
+            //        opt.AfterMap((image, dto) => dto.Image = ConvertToString(image.Image));
+            //    });
+
+            //    mapped.Add(productImageDTO);
+            //}
+
+            //return mapped.AsEnumerable();
+            var map = _mapper.Map<IEnumerable<ProductImageDTO>>(result);
+            return map;
+
         }
 
         public Task RemoveProductImage(int id)
@@ -49,13 +68,21 @@ namespace eCommerce.Services.Services
         {
             byte[] image;
 
-            var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+            //var stream = new FileStream(path, FileMode.Open, FileAccess.Read);
 
-            var reader = new BinaryReader(stream);
+            //var reader = new BinaryReader(stream);
 
-            image = reader.ReadBytes((int)stream.Length);
+            //image = reader.ReadBytes((int)stream.Length);
+
+            image = Encoding.Default.GetBytes(path);
 
             return image;
         }
+
+        //public string ConvertToString(byte[] image)
+        //{
+        //    var path = Encoding.Default.GetString(image);
+        //    return path;
+        //}
     }
 }

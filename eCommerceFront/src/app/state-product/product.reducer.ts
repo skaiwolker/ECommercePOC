@@ -3,12 +3,11 @@ import { Product } from "../product/product";
 import { getProducts } from "./products.actions";
 import { state } from '@angular/animations'
 
-export const initialState: Product = [];
+export const initialState: ReadonlyArray<Product> = [];
 
 export const productReducer = createReducer(
     initialState,
     on(getProducts, (state, { products }) => {
-        console.log('reducer', products)
         return products
     })
 )
