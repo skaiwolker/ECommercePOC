@@ -13,9 +13,11 @@ namespace eCommerce.Repository.Profiles
     {
         public ProductImageProfile()
         {
-            CreateMap<ProductImage, ProductImageDTO>().ForMember(dto => dto.Image,
-                                                        e => e.MapFrom(o => ConvertToString(o.Image))).ReverseMap().ForMember(o => o.Image,
-                                                        e => e.MapFrom(dto => ConvertToByte(dto.Image)));
+            CreateMap<ProductImage, ProductImageDTO>();
+            CreateMap<ProductImageDTO, ProductImage>();
+            /*.ForMember(dto => dto.Image,
+                                                    e => e.MapFrom(o => ConvertToString(o.Image))).ReverseMap().ForMember(o => o.Image,
+                                                    e => e.MapFrom(dto => ConvertToByte(dto.Image)));*/
         }
 
         public string ConvertToString(byte[] image)

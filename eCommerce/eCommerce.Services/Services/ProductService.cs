@@ -46,7 +46,7 @@ namespace eCommerce.Services.Services
 
             var product = _mapper.Map<Product>(productDTO);
 
-            product.Delete = 0;                    
+            product.Delete = 0;
 
             await _productRepository.AddProduct(product);
 

@@ -28,11 +28,11 @@ namespace eCommerce.Services.Services
 
         public async Task AddProductImage(ProductImageDTO productImageDTO)
         {
-            byte[] image = ConvertToByte(productImageDTO.Image);
+            //byte[] image = ConvertToByte(productImageDTO.Image);
 
             var productImage = _mapper.Map<ProductImage>(productImageDTO);
 
-            productImage.Image = image;
+           // productImage.Image = image;
 
             await _productImageRepository.AddProductImage(productImage);
         }

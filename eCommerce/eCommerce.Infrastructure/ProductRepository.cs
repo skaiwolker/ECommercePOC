@@ -24,17 +24,19 @@ namespace eCommerce.Repository
         public async Task<IEnumerable<Product>> GetProducts()//(IEnumerable<ProductImage> productImages)
         {
             //return await _context.Products.ToListAsync();
-            var query = @"SELECT * FROM Products p";
-                        //LEFT JOIN ProductImages pi ON pi.ProductId = p.Id";
-
-            //var result = await _connection.QueryAsync<Product, IEnumerable<ProductImage>, Product>(query, (product, image) =>
-            //{
-            //    image = productImages;
-            //    product.ProductImages = image.ToList();
-            //    return product;
-            //});
+            var query = @"SELECT * FROM Products p
+            WHERE p.[Delete] != 1";
 
             var result = await _connection.QueryAsync<Product>(query);
+
+            var query2 = @"SELECT * FROM ProductImages pi WHERE ProductId = @productId";
+
+            
+            foreach (var product in result)
+            {
+                product.ProductImages = (await _connection.QueryAsync<ProductImage>(query2, new  {productId = product.Id})).ToList();
+            }
+           // var result = await _connection.QueryAsync<Product>(query);
 
             return result;
         }
@@ -67,7 +69,7 @@ namespace eCommerce.Repository
 
         public async Task DeactivateProduct(Product product)
         {
-            _context.Remove(product);
+            _context.Update(product);
             await _context.SaveChangesAsync();
         }
 

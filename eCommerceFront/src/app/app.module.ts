@@ -11,6 +11,7 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { CoreModule } from './core/core.module';
 import { EffectsModule } from '@ngrx/effects';
+import { appReducer } from './shared/app-store/app.reducer';
 
 @NgModule({
   declarations: [
@@ -20,8 +21,9 @@ import { EffectsModule } from '@ngrx/effects';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({}, {}),
+    StoreModule.forRoot({appstate: appReducer}),
     EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({ maxAge: 25}),
     HomeModule,
     CoreModule    
   ],

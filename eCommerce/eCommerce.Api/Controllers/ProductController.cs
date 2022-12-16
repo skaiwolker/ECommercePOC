@@ -71,7 +71,7 @@ namespace eCommerce.Api.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Administrator, Seller")]
+        //[Authorize(Roles = "Administrator, Seller")]
         public async Task<ActionResult<ProductDTO>> AddProduct([FromBody] ProductDTO productDTO)
         {
             try

@@ -67,7 +67,7 @@ namespace eCommerce.Repository
 
         public async Task DeactivateOrderProduct(OrderProduct orderProduct)
         {
-            _context.Remove(orderProduct);
+            _context.Update(orderProduct);
             await _context.SaveChangesAsync();
         }
     }

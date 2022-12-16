@@ -27,52 +27,56 @@ namespace eCommerce.Repository
 
         public async Task AddProductImage(ProductImage productImage)
         {
-            //await _context.AddAsync(productImage);
+            await _context.AddAsync(productImage);
 
-            var query = @"INSERT INTO ProductImages
-                        SELECT @Image, @ProductId";
+            //var query = @"INSERT INTO ProductImages
+            //            SELECT @Image, @ProductId";
 
-            var con = new SqlConnection(_connection.ConnectionString);
+            //var con = new SqlConnection(_connection.ConnectionString);
 
-            con.Open();
-            var cmd = new SqlCommand(query, con);
-            cmd.Parameters.Add("@Image", System.Data.SqlDbType.Image, productImage.Image.Length).Value = productImage.Image;
-            cmd.Parameters.AddWithValue("@ProductId", productImage.ProductId);
+            //con.Open();
+            //var cmd = new SqlCommand(query, con);
+            //cmd.Parameters.Add("@Image", System.Data.SqlDbType.Image, productImage.Image.Length).Value = productImage.Image;
+            //cmd.Parameters.AddWithValue("@ProductId", productImage.ProductId);
 
-            await cmd.ExecuteNonQueryAsync();
+            //await cmd.ExecuteNonQueryAsync();
 
-            // await _context.SaveChangesAsync();
+            await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<ProductImage>> GetProductImages()
         {
-            List<ProductImage> images = new List<ProductImage>();
+            //List<ProductImage> images = new List<ProductImage>();
 
-            ProductImage image = new ProductImage();
+            //ProductImage image = new ProductImage();
 
             var query = @"SELECT * FROM ProductImages";
 
-            var con = new SqlConnection(_connection.ConnectionString);
+            var result = await _connection.QueryAsync<ProductImage>(query);
 
-            con.Open();
-            var cmd = new SqlCommand(query, con);
+            return result;
 
-            var dr = cmd.ExecuteReader();
+            //var con = new SqlConnection(_connection.ConnectionString);
+
+            //con.Open();
+            //var cmd = new SqlCommand(query, con);
+
+            //var dr = cmd.ExecuteReader();
 
 
-            if (dr.HasRows)
-            {
-                while (dr.Read())
-                {
-                    image.Id = (int)dr["id"];
-                    image.Image = dr["image"] != null ? (byte[])dr["image"] : null;
-                    image.ProductId = (int)dr["productId"];
+            //if (dr.HasRows)
+            //{
+            //    while (dr.Read())
+            //    {
+            //        image.Id = (int)dr["id"];
+            //        image.Image = dr["image"] != null ? (byte[])dr["image"] : null;
+            //        image.ProductId = (int)dr["productId"];
 
-                    images.Add(image);
-                }
-            }
+            //        images.Add(image);
+            //    }
+            //}
 
-            return images.AsEnumerable();
+            //return images.AsEnumerable();
         }
 
         public async Task RemoveProductImage(ProductImage productImage)

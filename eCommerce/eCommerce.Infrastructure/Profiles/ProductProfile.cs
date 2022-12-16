@@ -9,6 +9,7 @@ namespace eCommerce.Repository.Profiles
         public ProductProfile()
         {
             CreateMap<ProductDTO, Product>();
+
             CreateMap<Product, ProductDTO>();
         }
     }

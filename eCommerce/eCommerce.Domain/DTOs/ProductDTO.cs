@@ -1,6 +1,8 @@
 ﻿using eCommerce.Domain.DTOs.Base;
 using eCommerce.Domain.Models;
 using System.Collections.Generic;
+using System.IO;
+using System.Reflection.Metadata;
 
 namespace eCommerce.Domain.DTOs
 {
@@ -25,5 +27,6 @@ namespace eCommerce.Domain.DTOs
         public List<OrderProductDTO> OrderProducts { get; set; }
 
         public virtual List<ProductImageDTO> ProductImages { get; set; }
+
     }
 }

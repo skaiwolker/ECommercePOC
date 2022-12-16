@@ -49,7 +49,7 @@ namespace eCommerce.Repository
 
         public async Task DeactivateOrder(Order order)
         {
-            _context.Remove(order);
+            _context.Update(order);
             await _context.SaveChangesAsync();
         }
     }
