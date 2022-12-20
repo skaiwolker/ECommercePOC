@@ -32,7 +32,7 @@
 
   <div class="mb-3">
     <label for="txtAmount" class="form-label">Amount</label>
-    <input type="number" [(ngModel)]="productForm.amount"  class="form-control" id="txtAmount">
+    <input type="number" [(ngModel)]="productForm.amount"  class="form-control" id="txtAmount" placeholder="0">
   </div>
 
   <div class="input-group mb-3">
@@ -40,12 +40,16 @@
     <input type="number" [(ngModel)]="productForm.price"  class="form-control" aria-label="Price" placeholder=".00">
   </div>
 
-  <div class="col-6">
-    <label for="txtFile" class="form-label">Product Images</label>
+  <div>
+    <label for="txtFile" class="form-label">Product Images</label><br/>
     <input type="file" (change)="onChange($event)"/>
+
+    <div class="mt-4" *ngIf="selectedImages.length > 0">
+        <img class="mr-4" style="width: 150px; height: 150px; white-space: nowrap;" *ngFor="let image of selectedImages; let index = index" [src]="selectedImages[index]">
+    </div>
   </div>
-  <br/>
-  <button type="button" class="btn btn-dark" (click)="save()">Create Product</button>
+  
+  <button type="button" class="btn btn-dark mt-4" (click)="save()">Create Product</button>
 
   
 

@@ -1,1 +1,16 @@
-<product-list></product-list>
+<div>
+    <nav class="navbar navbar-dark bg-dark">
+          <div class="col-2">
+            <a class="navbar-brand" href="">eCommerce</a>
+          </div>
+          <div class="col-4 rounded">
+            <input type="search" #search (keyup.enter)="filterProduct(search.value)" class="form-control" placeholder="Search..." aria-describedby="filter">
+          </div>
+          <div class="col-2">
+            
+          </div>
+    </nav>
+</div>
+<div class="mb-5"></div>
+<br/>
+<product-list [receivedSearchValue]="searchValue"></product-list>

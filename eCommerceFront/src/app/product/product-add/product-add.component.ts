@@ -17,6 +17,8 @@ import { Product } from "../product";
 export class ProductAddComponent{
 
     constructor(private store:Store, private appStore: Store<Appstate>, private router: Router){}
+    selectedImages: Observable<any>[] = [];
+    indexImage: number = 0;
 
     productForm:Product = {
         id:0,
@@ -24,7 +26,7 @@ export class ProductAddComponent{
         description: '',
         department: 1,
         userId: 1,
-        amount: 0,
+        amount: undefined,
         price: undefined,
         productImages: []
     } 
@@ -50,6 +52,9 @@ export class ProductAddComponent{
             }
 
             this.productForm.productImages?.push(fileHandle); 
+
+            this.selectedImages[this.indexImage] = data;
+            this.indexImage += 1;
             
         })
     }

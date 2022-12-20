@@ -12,7 +12,7 @@ namespace eCommerce.Services.Services.Interfaces
 
         Task AddProduct(ProductDTO product, IEnumerable<ProductImageDTO> productImageDTOs);
 
-        Task UpdateProduct(ProductDTO product);
+        Task UpdateProduct(ProductDTO product, IEnumerable<ProductImageDTO> productImageDTOs);
 
         Task<bool> DeactivateProduct(int id);
 

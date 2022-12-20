@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, Input, OnInit, SimpleChanges } from "@angular/core";
 import { select, Store } from "@ngrx/store";
 import { selectProducts } from "src/app/state-product/product.selector";
 import { getProducts, invokeDeactivateProductAPI, invokeProductsAPI, } from "src/app/state-product/products.actions";
@@ -9,6 +9,7 @@ import { Appstate } from "src/app/shared/app-store/appstate";
 import { setAPIStatus } from "src/app/shared/app-store/app.action";
 import { Router } from "@angular/router";
 import { DomSanitizer, SafeUrl } from "@angular/platform-browser";
+import { switchMap } from "rxjs";
 
 declare const window: any
 
@@ -16,7 +17,8 @@ declare const window: any
     selector: 'product-list',
     templateUrl: './product-list.component.html',
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent implements OnInit{
+    route: any;
 
     constructor(private store: Store, private appStore: Store<Appstate>) { }
 
@@ -26,23 +28,43 @@ export class ProductListComponent implements OnInit {
 
     images: string[] = [];
 
+    productView: Product[]  =[];
 
-    ngOnInit() {
+    @Input() receivedSearchValue: string = '';
+
+    ngOnInit() {        
         this.deactivateModal = new window.bootstrap.Modal(
             document.getElementById("deleteModal")
         );
         this.store.dispatch(invokeProductsAPI());
 
         this.products$.subscribe(produtos => {
-            produtos.forEach(produto => {this.images.push(produto.productImages?.at(0)?.image || '/assets/images/image-not-found.png')
-            console.log(this.images);
-        })
-        
+            produtos.forEach(produto => {
+                this.images.push(produto.productImages?.at(0)?.image || '/assets/images/image-not-found.png')
+            })
         });
 
+        this.products$.subscribe((productList) => (this.productView = productList));
+    }
+
+    ngOnChanges(changes: SimpleChanges){
+        if(this.receivedSearchValue != ''){
+            
+        }
+        this.search(this.receivedSearchValue)
         
-        
-        
+    }
+
+    search(filter: string){
+        this.products$.subscribe(
+            (ProductList) => 
+                (this.productView = ProductList.filter((item: Product) => {
+                    return(
+                        item.name?.toLowerCase().includes(filter.toLowerCase()) ||
+                        item.description?.toLowerCase().includes(filter.toLowerCase())
+                    );
+                }))
+        );
     }
 
     openDeactivateModal(id: number = 0) {
@@ -59,5 +81,7 @@ export class ProductListComponent implements OnInit {
                 this.deactivateModal.hide();
             }
         })
+
     }
+
 }

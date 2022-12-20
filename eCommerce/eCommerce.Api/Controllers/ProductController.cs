@@ -100,7 +100,7 @@ namespace eCommerce.Api.Controllers
         {
             try
             {
-                await _productService.UpdateProduct(productDTO);
+                await _productService.UpdateProduct(productDTO, productDTO.ProductImages.AsEnumerable());
                 return Ok(productDTO);
             }
             catch (eCommerceException ex)

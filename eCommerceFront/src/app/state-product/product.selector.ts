@@ -12,3 +12,4 @@ export const selectProductById = (productId: number) => {
         return productById[0];
     });
 }
+

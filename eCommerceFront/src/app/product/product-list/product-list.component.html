@@ -1,6 +1,6 @@
 <div class="container mt-2">
     <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col" *ngFor="let product of products$ | async; let index = index">
+        <div class="col" *ngFor="let product of productView; let index = index">
             <div class="card">
                 <div class="card-body">
                     <img style="width: 100%; height: 100%;" [src]="images[index]">
@@ -39,3 +39,9 @@
       </div>
     </div>
   </div>
+
+  <ng-container *ngIf="productView.length == 0">
+    <div class="text-center">
+      <h2>No results found</h2>
+    </div>
+  </ng-container>

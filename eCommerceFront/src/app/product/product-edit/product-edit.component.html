@@ -37,6 +37,20 @@
       <span class="input-group-text">Price</span>
       <input type="number" [(ngModel)]="productForm.price"  class="form-control" aria-label="Price" placeholder=".00">
     </div>
+
+    <div>
+      <label for="txtFile" class="form-label">Product Images</label><br/>
+      <!-- <input type="file" (change)="onChange($event)"/> -->
+  
+      <div class="mt-4" *ngIf="productForm.productImages.length > 0">
+        <img class="mr-2" style="width: 150px; height: 150px; white-space: nowrap;" *ngFor="let image of productForm.productImages; let index = index" [src]="productForm.productImages[index].image">
+      </div>
+
+      <!-- <div class="mt-4" *ngIf="selectedImages.length > 0">
+        <img class="mr-4" style="width: 150px; height: 150px; white-space: nowrap;" *ngFor="let image of selectedImages; let index = index" [src]="selectedImages[index]">
+      </div> -->
+      <br/>
+    </div>
   
     <button type="button" class="btn btn-dark" (click)="update()">Update Product</button>
   

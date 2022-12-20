@@ -86,7 +86,7 @@ namespace eCommerce.Services.Services
 
         }
 
-        public async Task UpdateProduct(ProductDTO productDTO)
+        public async Task UpdateProduct(ProductDTO productDTO, IEnumerable<ProductImageDTO> productImageDTOs)
         {
             if (string.IsNullOrEmpty(productDTO.Name))
             {

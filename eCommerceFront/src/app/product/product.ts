@@ -9,7 +9,7 @@ export interface Product{
     userId?: number;
     amount?: number;
     price?: number;
-    productImages?: FileHandle[];
+    productImages: FileHandle[];
     [key: string]: any;
 }
 
