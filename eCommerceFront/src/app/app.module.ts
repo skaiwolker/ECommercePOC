@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { appReducer } from './shared/app-store/app.reducer';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HomeModule } from './home/home.module';
+import { CoreModule } from './core/core.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { HomeModule } from './home/home.module';
     StoreModule.forRoot({appstate: appReducer}),
     EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({ maxAge: 25}),
-    HomeModule  
+    HomeModule,
+    CoreModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -25,6 +25,8 @@ namespace eCommerce.Services.Services.Interfaces
         string GenerateToken(ClaimsIdentity claimsIdentity);
 
         string PasswordCryptography(string password);
+
+        Task<UserDTO> GetInfos(string email);
         
     }
 }

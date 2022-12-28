@@ -198,5 +198,16 @@ namespace eCommerce.Services.Services
             return sb.ToString();
         }
 
+        public async Task<UserDTO> GetInfos(string email)
+        {
+            var result = await _userRepository.GetLoggedUser(email);
+
+            if (result == null)
+            {
+                throw new eCommerceException("User Not Found", HttpStatusCode.NotFound);
+            }
+
+            return _mapper.Map<UserDTO>(result);
+        }
     }
 }

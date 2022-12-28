@@ -1,13 +1,14 @@
 <div>
     <nav class="navbar navbar-dark bg-dark">
           <div class="col-2">
-            <a class="navbar-brand" href="">eCommerce</a>
+            <a class="navbar-brand" href="">   eCommerce</a>
           </div>
           <div class="col-4 rounded">
             <input type="search" #search (keyup.enter)="filterProduct(search.value)" class="form-control" placeholder="Search..." aria-describedby="filter">
           </div>
           <div class="col-2">
-            
+            <a class="navbar-brand" (click)="redirectToSignin()">Sign In</a>
+            <img style="width: 40px; height: 40px;" src="/assets/images/userIcon.png">
           </div>
     </nav>
 </div>

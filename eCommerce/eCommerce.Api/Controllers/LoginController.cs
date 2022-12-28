@@ -35,11 +35,8 @@ namespace eCommerce.Api.Controllers
 
                 var claims = new List<Claim>
                 {
-                new Claim(ClaimTypes.NameIdentifier, user.Username),
-                new Claim(ClaimTypes.Email, user.Email),
-                new Claim(ClaimTypes.GivenName, user.FirstName),
-                new Claim(ClaimTypes.Surname, user.LastName),
-                new Claim(ClaimTypes.Role, user.Role.Name)
+                    new Claim(ClaimTypes.Role, user.Role.Name),
+                    new Claim(ClaimTypes.Email, user.Email)
                 };
 
                 var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -66,6 +63,36 @@ namespace eCommerce.Api.Controllers
             }
         }
 
+        [HttpGet("infos")]
+        public async Task<ActionResult<UserDTO>> GetLoggedUserInfo()
+        {
+            try {
+
+                string email = "";
+
+                if (String.IsNullOrEmpty(HttpContext.User.FindFirst(ClaimTypes.Email).Value))
+                {
+                    email = HttpContext.User.FindFirst(ClaimTypes.Email).Value;
+                }
+
+                var user = await _userService.GetInfos(email);
+                return Ok(user);
+            }
+            catch (eCommerceException ex)
+            {
+                return StatusCode(Convert.ToInt32(ex.StatusCode), new
+                {
+                    eCommerceEx = ex.Message
+                });
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, new
+                {
+                    exception = e.Message
+                });
+            }
+        }
 
     }
 }

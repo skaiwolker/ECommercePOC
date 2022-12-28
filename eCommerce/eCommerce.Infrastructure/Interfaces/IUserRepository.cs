@@ -22,5 +22,7 @@ namespace eCommerce.Repository.Interfaces
         Task<User> AuthenticateUser(string username, string password);
 
         Task<User> ValidateIfExists(string email, string username);
+
+        Task<User> GetLoggedUser(string email);
     }
 }

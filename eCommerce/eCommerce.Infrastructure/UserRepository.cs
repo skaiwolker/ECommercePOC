@@ -94,5 +94,20 @@ namespace eCommerce.Repository
 
             return await _connection.QueryFirstOrDefaultAsync<User>(query, param);
         }
+
+        public async Task<User> GetLoggedUser(string email)
+        {
+            var param = new
+            {
+                Email = email
+            };
+
+            var query = @"SELECT * FROM Users
+                        WHERE Email = @email
+                        AND Delete = 0 "
+            ;
+
+            return await _connection.QueryFirstOrDefaultAsync<User>(query, param);
+        }
     }
 }

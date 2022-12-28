@@ -83,6 +83,7 @@ namespace eCommerce.Services.Services
 
             oldOrderProduct.Product.Amount += amountDifferece;
             oldOrderProduct.Amount = orderProductDTO.Amount;
+            
 
             if (oldOrderProduct.Product.Amount < 0)
             {
@@ -90,6 +91,7 @@ namespace eCommerce.Services.Services
             }
 
             orderProductDTO.Delete = 0;
+            
 
             await _orderProductRepository.UpdateOrderProduct(oldOrderProduct);
             await _productRepository.UpdateProduct(oldOrderProduct.Product);

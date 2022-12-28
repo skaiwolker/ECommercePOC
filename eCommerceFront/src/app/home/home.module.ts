@@ -8,6 +8,8 @@ import { ProductEditComponent } from "../product/product-edit/product-edit.compo
 import { ProductListComponent } from "../product/product-list/product-list.component";
 import { ProductEffects } from "../state-product/product.effects";
 import { productReducer } from "../state-product/product.reducer";
+import { UserEffects } from "../state-user/user.effects";
+import { userReducer } from "../state-user/user.reducer";
 import { HomeRoutingModule } from "./home-routing.module";
 import { HomeComponent } from "./home.component";
 @NgModule({
@@ -17,7 +19,9 @@ import { HomeComponent } from "./home.component";
         HomeRoutingModule,
         FormsModule,
         StoreModule.forFeature('products', productReducer),
-        EffectsModule.forFeature([ProductEffects])
+        EffectsModule.forFeature([ProductEffects]),
+        StoreModule.forFeature('user', userReducer),
+        EffectsModule.forFeature([UserEffects])
     ],
     providers: []
 })
