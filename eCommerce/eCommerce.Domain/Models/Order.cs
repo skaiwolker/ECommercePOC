@@ -1,24 +1,20 @@
-﻿using System;
+﻿using eCommerce.Domain.Models.Base;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace eCommerce.Domain.Models
 {
-    public class Order
+    public class Order : BaseModel
     {
-        [Key]
-        [Required]
         public int Id { get; set; }
 
         public int Status { get; set; }
 
-        public Client Client { get; set; }
+        public virtual User User { get; set; }
 
-        public int ClientId { get; set; }
+        public int UserId { get; set; }
 
-        public List<Stock> Stocks { get; set; }
+        public virtual List<OrderProduct> OrderProducts { get; set; }
     }
 }

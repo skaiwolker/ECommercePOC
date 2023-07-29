@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using eCommerce.Domain.Models.Base;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace eCommerce.Domain.Models
 {
-    public class CreditCard
+    public class CreditCard : BaseModel
     {
-        [Key]
-        [Required]
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -21,8 +15,8 @@ namespace eCommerce.Domain.Models
 
         public string SecurityCode { get; set; }
 
-        public Client Client { get; set; }
+        public virtual User User { get; set; }
 
-        public int ClientId { get; set; }
+        public int UserId { get; set; }
     }
 }
