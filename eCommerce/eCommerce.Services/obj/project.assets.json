@@ -7688,19 +7688,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dartagnanl\\.nuget\\packages\\": {}
+    "C:\\Users\\darta\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Services\\eCommerce.Services.csproj",
+      "projectUniqueName": "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Services\\eCommerce.Services.csproj",
       "projectName": "eCommerce.Services",
-      "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Services\\eCommerce.Services.csproj",
-      "packagesPath": "C:\\Users\\dartagnanl\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Services\\obj\\",
+      "projectPath": "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Services\\eCommerce.Services.csproj",
+      "packagesPath": "C:\\Users\\darta\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Services\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dartagnanl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\darta\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7714,11 +7714,11 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj": {
-              "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj"
+            "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj": {
+              "projectPath": "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Domain\\eCommerce.Domain.csproj"
             },
-            "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Repository.csproj": {
-              "projectPath": "C:\\Users\\dartagnanl\\Documents\\GitHub\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Repository.csproj"
+            "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Repository.csproj": {
+              "projectPath": "C:\\Users\\darta\\OneDrive\\Documents\\DArtagnan Lamarca\\POC\\eCommerce\\eCommerce.Infrastructure\\eCommerce.Repository.csproj"
             }
           }
         }
@@ -7796,7 +7796,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
